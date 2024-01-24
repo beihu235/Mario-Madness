@@ -536,11 +536,13 @@ class PauseSubState extends MusicBeatSubstate
 
 						if (PlayState.curStage == 'virtual')
 						{
-							Lib.application.window.fullscreen = false;
+							Lib.application.window.fullscreen = true;
 							Lib.application.window.maximized = false;
 							Lib.application.window.resize(restsizeX, restsizeY);
 							Lib.application.window.move(restX, restY);
+							#if windows
 							CppAPI.setWallpaper('old');
+							#end
 						}
 
 						if (PlayState.getspeed != 0)
