@@ -6178,11 +6178,8 @@ class PlayState extends MusicBeatState
 				}));
 
 			inCutscene = true;
-			cutVid = new VideoSprite();
-			cutVid.scrollFactor.set(0, 0);
+			cutVid = new VideoHandler();
 			cutVid.playVideo(Paths.video(name));
-			cutVid.cameras = [camOther];
-			add(cutVid);
 			cancelFadeTween();
 			CustomFadeTransition.nextCamera = null;
 
