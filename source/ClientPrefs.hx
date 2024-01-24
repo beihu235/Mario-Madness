@@ -23,7 +23,7 @@ class ClientPrefs {
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
-	public static var gpuTextures:Bool = false;
+	public static var gpuTextures:Bool = true;
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
 	public static var vramSprites:Bool = true;
