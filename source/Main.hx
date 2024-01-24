@@ -59,8 +59,18 @@ class Main extends Sprite {
 	}
 
 	public function setupGame():Void {
-		Lib.application.window.onClose.add(PlayState.onWinClose);
+                var stageWidth:Int = Lib.current.stage.stageWidth;
+		var stageHeight:Int = Lib.current.stage.stageHeight;
 
+		if (zoom == -1)
+		{
+			var ratioX:Float = stageWidth / gameWidth;
+			var ratioY:Float = stageHeight / gameHeight;
+			zoom = Math.min(ratioX, ratioY);
+			gameWidth = Math.ceil(stageWidth / zoom);
+			gameHeight = Math.ceil(stageHeight / zoom);
+		}
+		
 		#if !debug
 		initialState = TitleState;
 		#end
@@ -72,7 +82,7 @@ class Main extends Sprite {
 			fpsVar.visible = false;
 		}
 		
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 		FlxG.signals.preStateSwitch.add(function () {
 			if (!Main.skipNextDump) {
