@@ -556,8 +556,10 @@ class NativeWindow
 	{
 		if (handle != null)
 		{
+			#if windows
 			#if (!macro && lime_cffi)
 			NativeCFFI.lime_window_set_text_input_rect(handle, value);
+			#end
 			#end
 		}
 
