@@ -20,9 +20,9 @@ enum abstract FlxAxes1(Int)
 	/**
 	 * Internal helper to reference self
 	 */
-	var self(get, never):FlxAxes;
+	var self(get, never):FlxAxes1;
 	
-	inline function get_self():FlxAxes
+	inline function get_self():FlxAxes1
 	{
 		return cast this;
 	}
@@ -48,12 +48,12 @@ enum abstract FlxAxes1(Int)
 		}
 	}
 	
-	public static function fromBools(x:Bool, y:Bool):FlxAxes
+	public static function fromBools(x:Bool, y:Bool):FlxAxes1
 	{
 		return cast (x ? (cast X:Int) : 0) | (y ? (cast Y:Int) : 0);
 	}
 	
-	public static function fromString(axes:String):FlxAxes
+	public static function fromString(axes:String):FlxAxes1
 	{
 		return switch axes.toLowerCase()
 		{
