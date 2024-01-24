@@ -15746,8 +15746,10 @@ class PlayState extends MusicBeatState
 
 		if (ClientPrefs.noVirtual && curStage == 'virtual')
 		{
+			#if windows
 			CppAPI.restoreWindows();
 			CppAPI.setWallpaper('old');
+		        #end
 		}
 	}
 
