@@ -77,7 +77,7 @@ class AndroidControls extends FlxSpriteGroup {
 
 		switch (mode){
 			case VIRTUALPAD_RIGHT:
-				initControler(0);
+				initControler(5);
 			case VIRTUALPAD_LEFT:
 				initControler(1);
 			case VIRTUALPAD_CUSTOM:
