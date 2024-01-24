@@ -351,14 +351,18 @@ class Paths
 		//trace(path);
 		if (OpenFlAssets.exists(path, IMAGE)) {
 			if(!currentTrackedAssets.exists(path)) {
-				var newGraphic:FlxGraphic = FlxG.bitmap.add(path, false, path);
+				var newGraphic:FlxGraphic;
+				if (ClientPrefs.gpuTextures)
+					newGraphic = FlxGraphic.fromBitmapData(GPUFunctions.getBitmaponGPU(path), false, path, false);
+		                else
+					newGraphic = FlxG.bitmap.add(path, false, path);
 				newGraphic.persist = true;
 				currentTrackedAssets.set(path, newGraphic);
 			}
 			localTrackedAssets.push(path);
 			return currentTrackedAssets.get(path);
 		}
-		trace('oh no ( ${path} )  returning null NOOOO');
+		trace('"$path" is returning null');
 		return null;
 	}
 
