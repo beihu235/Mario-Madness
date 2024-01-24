@@ -567,6 +567,6 @@ typedef BackdropDrawParams = {
 	scaleY:Float,
 	spacingX:Float,
 	spacingY:Float,
-	repeatAxes:FlxAxes,
+	repeatAxes:FlxAxes1,
 	angle:Float
 };
