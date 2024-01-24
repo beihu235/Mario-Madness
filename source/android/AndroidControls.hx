@@ -85,7 +85,7 @@ class AndroidControls extends FlxSpriteGroup {
 			case DUO:
 				initControler(3);
 			case HITBOX:
-		                initControler(5);
+		                initControler(0);
 			case KEYBOARD:// nothing
 		}
 	}
