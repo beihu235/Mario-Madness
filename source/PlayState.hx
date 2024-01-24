@@ -6186,7 +6186,6 @@ class PlayState extends MusicBeatState
 			if(SONG.song.toLowerCase() == 'demise'){
 				cutVid.finishCallback = function()
 				{
-					remove(cutVid);
 					camHUD.flash(FlxColor.RED, 2);
 				}
 				eventTimers.push(new FlxTimer().start(0.32, function(tmr:FlxTimer)
@@ -6210,7 +6209,6 @@ class PlayState extends MusicBeatState
 	}
 
 	public function finishVideo():Void{
-		remove(cutVid);
 		if(SONG.song.toLowerCase() != 'abandoned'){
 			if (endingSong)
 			{
@@ -7121,7 +7119,6 @@ class PlayState extends MusicBeatState
 
 			if(luigidies != null) luigidies.bitmap.resume();
 			if(midsongVid != null) midsongVid.bitmap.resume();
-			if(cutVid != null && SONG.song.toLowerCase() == 'demise') cutVid.bitmap.resume();
 
 			paused = false;
 			callOnLuas('onResume', []);
@@ -7591,9 +7588,8 @@ class PlayState extends MusicBeatState
 				#end
 			}
 		}
-		else if(FlxG.keys.justPressed.ENTER && inCutscene && cutVid != null && SONG.song.toLowerCase() != 'demise'){
-			finishVideo();
-			cutVid.bitmap.stop();
+		else if(FlxG.keys.justPressed.ENTER && inCutscene && SONG.song.toLowerCase() != 'demise'){
+			finishVideo();	
 		}
 
 		if (healthDrain > 0)
