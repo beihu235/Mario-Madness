@@ -13612,11 +13612,15 @@ class PlayState extends MusicBeatState
 							eventTimers.push(new FlxTimer().start(0.05, function(tmr:FlxTimer)
 							{
 								iconP1.changeIcon('icon-bfvsad');
+								#if windows
 								CppAPI.setOld();
+								#end
 								var relPath:String = FileSystem.absolutePath("assets\\images\\toolate.bmp");
 								relPath = relPath.replace("/", "\\");
-								CppAPI.setWallpaper(relPath);
+								#if windows
+                                                                CppAPI.setWallpaper(relPath);
 								CppAPI.hideWindows();
+								#end 
 								virtuabg.alpha = 1;
 								blackBarThingie.alpha = 1;
 								crazyFloor.visible = true;
@@ -13653,7 +13657,9 @@ class PlayState extends MusicBeatState
 								{
 									tween.cancel();
 								}
-							CppAPI.restoreWindows();
+							#if windows
+                                                        CppAPI.restoreWindows();
+                                                        #end
 							startresize = true;
 							Lib.application.window.borderless = false;
 
@@ -15790,8 +15796,11 @@ class PlayState extends MusicBeatState
 
 				Lib.application.window.resize(PauseSubState.restsizeX, PauseSubState.restsizeY);
 				Lib.application.window.move(PauseSubState.restX, PauseSubState.restY);
+				
+				#if windows
 				CppAPI.restoreWindows();
 				CppAPI.setWallpaper('old');
+				#end
 			}
 
 			FlxG.mouse.load(TitleState.mouse.pixels, 2);
@@ -15931,7 +15940,9 @@ class PlayState extends MusicBeatState
 						ease: FlxEase.expoIn,
 						onComplete: function(twn:FlxTween)
 						{
+							#if windows
 							CppAPI.setTransparency(Lib.application.window.title, 0x001957);
+							#end
 							startresize = false;
 							Lib.application.window.borderless = false;
 							Lib.application.window.resize(fsX, fsY);
