@@ -293,7 +293,7 @@ class PlayState extends MusicBeatState
 	var line1:FlxSprite;
 	var line2:FlxSprite;
 
-	var cutVid:VideoSprite;
+	var cutVid:VideoHandler;
 
 	var midsongVid:VideoSprite;
 
