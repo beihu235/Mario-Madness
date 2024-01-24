@@ -7577,7 +7577,6 @@ class PlayState extends MusicBeatState
 
 					if(luigidies != null) luigidies.bitmap.pause();
 					if(midsongVid != null) midsongVid.bitmap.pause();
-					if(cutVid != null && SONG.song.toLowerCase() == 'demise') cutVid.bitmap.pause();
 
 					PauseSubState.transCamera = camOther;
 					openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
