@@ -187,11 +187,7 @@ class AndroidControlsMenu extends MusicBeatState
 		}
 		else
 		{
-		if(ClientPrefs.hitboxmode != 'New'){
-			hbox.visible = true;
-		     }else{
 		       newhbox.visible = true;
-		     }
 		}
 
 		if (daChoice != "Pad-Custom")
