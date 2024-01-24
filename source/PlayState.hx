@@ -50,8 +50,8 @@ import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import haxe.Json;
 import haxe.Timer;
-import hxcodec.VideoHandler;
-import hxcodec.VideoSprite;
+import VideoHandler;
+import VideoSprite;
 import lime.app.Application;
 import lime.utils.Assets;
 import modchart.*;
@@ -2631,7 +2631,7 @@ class PlayState extends MusicBeatState
 				ycbuLightningR.cameras = [camEst];
 				add(ycbuLightningR);
 
-				ycbuHeadL = new FlxBackdrop(Y);
+				ycbuHeadL = new FlxBackdrop();
 				ycbuHeadL.frames = Paths.getSparrowAtlas('mario/beatus/YouCannotBeatUS_Fellas_Assets');
 				ycbuHeadL.animation.addByPrefix('LOL', "Rotat e", 24, true);
 				ycbuHeadL.animation.addByPrefix('gyromite', "Bird Up", 24, false);
@@ -2648,7 +2648,7 @@ class PlayState extends MusicBeatState
 				ycbuHeadL.cameras = [camEst];
 				add(ycbuHeadL);
 
-				ycbuHeadR = new FlxBackdrop(Y);
+				ycbuHeadR = new FlxBackdrop();
 				ycbuHeadR.frames = Paths.getSparrowAtlas('mario/beatus/YouCannotBeatUS_Fellas_Assets');
 				ycbuHeadR.animation.addByPrefix('LOL', "Rotat e", 24, true);
 				ycbuHeadR.animation.addByPrefix('gyromite', "Bird Up", 24, false);
@@ -3056,13 +3056,13 @@ class PlayState extends MusicBeatState
 				demColor.color = FlxColor.BLACK;
 				add(demColor);
 
-				dembg = new FlxBackdrop(Paths.image('mario/MX/demise/1/Demise_BG_BG2'), X);
+				dembg = new FlxBackdrop(Paths.image('mario/MX/demise/1/Demise_BG_BG2'));
 				dembg.scrollFactor.set(0.3, 0.3);
 				dembg.velocity.set(100, 0);
 				dembg.y -= 500;
 				add(dembg);
 
-				demLevel = new FlxBackdrop(Paths.image('mario/MX/demise/1/Demise_BG_BGCaca'), X);
+				demLevel = new FlxBackdrop(Paths.image('mario/MX/demise/1/Demise_BG_BGCaca'));
 				demLevel.scrollFactor.set(0.5, 0.5);
 				demLevel.velocity.set(250, 0);
 				demLevel.y -= 300;
@@ -3087,25 +3087,25 @@ class PlayState extends MusicBeatState
 
 
 
-				underdembg = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_Mountains.png'), X);
+				underdembg = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_Mountains.png'));
 				underdembg.scrollFactor.set(0.3, 0.3);
 				underdembg.velocity.set(100, 0);
 				underdembg.y -= 500;
 				add(underdembg);
 
-				underdemLevel = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BGLower.png'), X);
+				underdemLevel = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BGLower.png'));
 				underdemLevel.scrollFactor.set(0.5, 0.5);
 				underdemLevel.velocity.set(250, 0);
 				underdemLevel.y -= 1400;
 				add(underdemLevel);
 
-				underdemGround1 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG1'), X, 6000);
+				underdemGround1 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG1'), 6000);
 				underdemGround1.scrollFactor.set(0.9, 0.9);
 				underdemGround1.velocity.set(3200, 0);
 				underdemGround1.y -= 800;
 				add(underdemGround1);
 
-				underdemGround2 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG2'), X, 4000);
+				underdemGround2 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG2'), 4000);
 				underdemGround2.scrollFactor.set(0.9, 0.9);
 				underdemGround2.velocity.set(3200, 0);
 				underdemGround2.y -= 800;
@@ -3548,7 +3548,7 @@ class PlayState extends MusicBeatState
 				meatfog.screenCenter();
 				add(meatfog);
 
-				hallTLL1 = new FlxBackdrop(X, -1170);
+				hallTLL1 = new FlxBackdrop(0, -1170);
 				hallTLL1.frames = Paths.getSparrowAtlas('Too_Late_Luigi_Hallway');
 				hallTLL1.animation.addByPrefix('idle', "tll idle",   24, false);
 				hallTLL1.animation.addByPrefix('singUP', "tll up", 	 24, false);
@@ -3562,7 +3562,7 @@ class PlayState extends MusicBeatState
 				hallTLL1.alpha = 0.000001;
 
 
-				hallTLL2 = new FlxBackdrop(X, -1170);
+				hallTLL2 = new FlxBackdrop(0, -1170);
 				hallTLL2.frames = Paths.getSparrowAtlas('Too_Late_Luigi_Hallway');
 				hallTLL2.animation.addByPrefix('idle', "tll idle",   24, false);
 				hallTLL2.scale.set(0.8, 0.8);
@@ -3573,7 +3573,7 @@ class PlayState extends MusicBeatState
 				hallTLL2.alpha = 0.000001;
 				hallTLL2.color = 0xFF979797;
 
-				hallTLL3 = new FlxBackdrop(X, -1170);
+				hallTLL3 = new FlxBackdrop(0, -1170);
 				hallTLL3.frames = Paths.getSparrowAtlas('Too_Late_Luigi_Hallway');
 				hallTLL3.animation.addByPrefix('idle', "tll idle",   24, false);
 				hallTLL3.scale.set(0.6, 0.6);
@@ -3587,7 +3587,7 @@ class PlayState extends MusicBeatState
 				add(hallTLL2);
 				add(hallTLL1);
 
-				fgTLL = new FlxBackdrop(Paths.image('mario/TooLateBG/feet/FG_Too_Late_Luigi'), X, 1545);
+				fgTLL = new FlxBackdrop(Paths.image('mario/TooLateBG/feet/FG_Too_Late_Luigi'), 0, 1545);
 				fgTLL.updateHitbox();
 				fgTLL.antialiasing = true;
 				fgTLL.velocity.set(-3920, 0);
@@ -3745,7 +3745,7 @@ class PlayState extends MusicBeatState
 				act2WhiteFlash.alpha = 0;
 				add(act2WhiteFlash);
 
-				act2Sky = new FlxBackdrop(Paths.image('mario/allfinal/act2/act2_scroll1'), X);
+				act2Sky = new FlxBackdrop(Paths.image('mario/allfinal/act2/act2_scroll1'));
 				act2Sky.scrollFactor.set(0.3, 0.3);
 				act2Sky.velocity.set(100, 0);
 				act2Sky.y = -300;
@@ -4178,7 +4178,7 @@ class PlayState extends MusicBeatState
 
 				add(dadGroup);
 
-				bgH1 = new FlxBackdrop(Paths.image('mario/piracy/HallyBG4'), Y);
+				bgH1 = new FlxBackdrop(Paths.image('mario/piracy/HallyBG4'));
 				bgH1.x = 240;
 				bgH1.scale.set(1.3, 1.3);
 				bgH1.updateHitbox();
@@ -4200,7 +4200,7 @@ class PlayState extends MusicBeatState
 				bgH4.antialiasing = false;
 				add(bgH4);
 
-				var bgbottom:FlxBackdrop = new FlxBackdrop(Paths.image('mario/piracy/bgbottom'), X);
+				var bgbottom:FlxBackdrop = new FlxBackdrop(Paths.image('mario/piracy/bgbottom'));
 				bgbottom.scrollFactor.set(0, 0);
 				bgbottom.velocity.set(40, 0);
 				bgbottom.setGraphicSize(Std.int(bgbottom.width * 2.5));
@@ -5892,7 +5892,9 @@ class PlayState extends MusicBeatState
 			CoolUtil.precacheSound('psAtt');
 		}
 
-		discName = PlayState.SONG.song.replace(' ', '');
+		#if desktop
+                discName = PlayState.SONG.song.replace(' ', '');
+                #end
 
 		#if desktop
 		// Updating Discord Rich Presence.
