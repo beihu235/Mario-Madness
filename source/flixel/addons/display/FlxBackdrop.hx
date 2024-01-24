@@ -25,7 +25,7 @@ class FlxBackdrop extends FlxSprite
 	/**
 	 * The axes to repeat the backdrop, defaults to XY which covers the whole camera.
 	 */
-	public var repeatAxes:FlxAxes = XY;
+	public var repeatAxes:FlxAxes1 = XY;
 	
 	/**
 	 * The gap between repeated tiles, defaults to (0, 0), or no gap.
