@@ -112,7 +112,7 @@ class NativeWindow
 
 		#if (!macro && lime_cffi)
 		handle = NativeCFFI.lime_window_create(parent.application.__backend.handle, width, height, flags, title);
-        #if cpp CppAPI.darkMode(); #end
+        #if windows CppAPI.darkMode(); #end
 
 		if (handle != null)
 		{
