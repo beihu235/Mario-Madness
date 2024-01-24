@@ -65,13 +65,13 @@ class Main extends Sprite {
 		initialState = TitleState;
 		#end
 		FlxTransitionableState.skipNextTransOut = true;
-		#if !mobile
+		
 		fpsVar = new FPS(10, 4, 0xFFFFFF);
 
 		if (fpsVar != null) {
 			fpsVar.visible = false;
 		}
-		#end
+		
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
 		FlxG.signals.preStateSwitch.add(function () {
@@ -87,9 +87,9 @@ class Main extends Sprite {
 			Main.skipNextDump = false;
 		});
 
-		#if !mobile
+		
 		addChild(fpsVar);
-		#end
+		
 		#if html5
 		FlxG.autoPause = false;
 		#end
