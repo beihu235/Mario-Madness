@@ -3099,13 +3099,13 @@ class PlayState extends MusicBeatState
 				underdemLevel.y -= 1400;
 				add(underdemLevel);
 
-				underdemGround1 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG1'), 6000);
+				underdemGround1 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG1'), 0, 6000);
 				underdemGround1.scrollFactor.set(0.9, 0.9);
 				underdemGround1.velocity.set(3200, 0);
 				underdemGround1.y -= 800;
 				add(underdemGround1);
 
-				underdemGround2 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG2'), 4000);
+				underdemGround2 = new FlxBackdrop(Paths.image('mario/MX/demise/2/Demise_BG2_BG2'), 0, 4000);
 				underdemGround2.scrollFactor.set(0.9, 0.9);
 				underdemGround2.velocity.set(3200, 0);
 				underdemGround2.y -= 800;
