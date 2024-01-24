@@ -23,6 +23,7 @@ class ClientPrefs {
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
+	public static var gpuTextures:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
 	public static var vramSprites:Bool = true;
@@ -119,6 +120,7 @@ class ClientPrefs {
 		FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
 		FlxG.save.data.noteOffset = noteOffset;
+		FlxG.save.data.gpuTextures = gpuTextures;
 		FlxG.save.data.menuBG = menuBG;
 		FlxG.save.data.menuUnlock = menuUnlock;
 		FlxG.save.data.hideHud = hideHud;
@@ -170,6 +172,9 @@ class ClientPrefs {
 		}
 		if (FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;
+		}
+		if(FlxG.save.data.gpuTextures != null) {
+			gpuTextures = FlxG.save.data.gpuTextures;
 		}
 		if (FlxG.save.data.noteSplashes != null) {
 			noteSplashes = FlxG.save.data.noteSplashes;
