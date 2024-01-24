@@ -10,7 +10,7 @@ import flixel.math.FlxMatrix;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import flixel.system.FlxAssets;
-import flixel.util.FlxAxes;
+import flixel.util.FlxAxes1;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 
