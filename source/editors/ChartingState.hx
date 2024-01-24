@@ -210,7 +210,9 @@ class ChartingState extends MusicBeatState
 
 			if(PlayState.curStage == 'virtual'){
 				Lib.application.window.resize(1280, 720);
+				#if windows
 				CppAPI.setWallpaper('old');
+				#end
 			}
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
