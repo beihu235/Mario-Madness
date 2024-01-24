@@ -77,8 +77,7 @@ class Main extends Sprite {
 		FlxTransitionableState.skipNextTransOut = true;
 		
 		fpsVar = new FPS(10, 4, 0xFFFFFF);
-                Lib.current.stage.align = "tl";
-		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
+                
 		if (fpsVar != null) {
 			fpsVar.visible = false;
 		}
