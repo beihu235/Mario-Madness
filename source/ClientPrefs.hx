@@ -29,7 +29,7 @@ class ClientPrefs {
 	public static var hideTime:Bool = false;
 	public static var vramSprites:Bool = true;
 
-	public static var filtro85:Bool = true;
+	public static var filtro85:Bool = false;
 	public static var pauseStart:Bool = false;
 	public static var noVirtual:Bool = true;
 	public static var noDiscord:Bool = true;
