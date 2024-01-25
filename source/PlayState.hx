@@ -4959,7 +4959,7 @@ class PlayState extends MusicBeatState
 		for (notetype in noteTypeMap.keys())
 		{
 			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
-			if (FileSystem.exists(luaToLoad))
+			if (FileSystem.exists(SUtil.getPath() + luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
@@ -4967,7 +4967,7 @@ class PlayState extends MusicBeatState
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
-			if (FileSystem.exists(luaToLoad))
+			if (FileSystem.exists(SUtil.getPath() + luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
