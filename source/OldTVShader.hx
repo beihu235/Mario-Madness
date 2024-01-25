@@ -24,6 +24,9 @@ class OldTVShader extends FlxShader
         }
 
         void main() {
+            bool flag = false;
+            bool flag2 = false;
+
             vec2 uv = openfl_TextureCoordv;
             
             //picture offset
@@ -38,6 +41,18 @@ class OldTVShader extends FlxShader
             float realSize = lineSize / openfl_TextureSize.y / 2.0;
             float position = mod(iTime, timeMod) / time;
             float position2 = 99.;
+            if (iTime > repeatTime) {
+                position2 = mod(iTime - repeatTime, timeMod) / time;
+            }
+            if (!(uv.y - position > realSize || uv.y - position < -realSize)) {
+                uv.x -= hash(uvec3(0., uv.y * uvyMul, iTime * updateRate2)).x * offsetMul;
+                flag = true;
+            } else if (position2 != 99.) {
+                if (!(uv.y - position2 > realSize || uv.y - position2 < -realSize)) {
+                    uv.x -= hash(uvec3(0., uv.y * uvyMul, iTime * updateRate2)).x * offsetMul;
+                    flag = true;
+                }
+            }
             
             vec4 col = flixel_texture2D(bitmap, uv);
             
@@ -55,6 +70,11 @@ class OldTVShader extends FlxShader
             col /= quality * directions - 14.0;
             
             //for the black on the left
+            if (uv.x < 0.) {
+                col = id.xxxy;
+                flag = false;
+                flag2 = true;
+            }
             
             //randomized black shit and sploches
             float updateRate4 = 100.0;
@@ -63,6 +83,22 @@ class OldTVShader extends FlxShader
             float valMul2 = 0.007;
             
             float val2 = hash(uvec3(uv.y * uvyMul3, 0., iTime * updateRate4)).x;
+            if (val2 > cutoff2) {
+                float adjVal2 = (val2 - cutoff2) * valMul2 * (1. / (1. - cutoff2));
+                if (uv.x < adjVal2) {
+                    col = id.xxxy;
+                    flag2 = true;
+                } else {
+                    flag = true;
+                }
+            }
+
+            //static
+            if (!flag2) {
+                float updateRate = 100.0;
+                float mixPercent = 0.05; 
+                col = mix(col, vec4(hash(uvec3(uv * openfl_TextureSize, iTime * updateRate)).rrr, 1.), mixPercent);
+            }
             
             //white sploches
             float updateRate3 = 75.0;
@@ -71,6 +107,17 @@ class OldTVShader extends FlxShader
             float cutoff = 0.95;
             float valMul = 0.7;
             float falloffMul = 0.7;
+            
+            if (flag) {
+                float val = hash(uvec3(uv.x * uvxMul, uv.y * uvyMul2, iTime * updateRate3)).x;
+                if (val > cutoff) {
+                    float offset = hash(uvec3(uv.y * uvyMul2, uv.x * uvxMul, iTime * updateRate3)).x;
+                    float adjVal = (val - cutoff) * valMul * (1. / (1. - cutoff));
+                    adjVal -= abs((uv.x * uvxMul - (floor(uv.x * uvxMul) + offset)) * falloffMul);
+                    adjVal = clamp(adjVal, 0., 1.);
+                    col = vec4(mix(col.rgb, id.yyy, adjVal), col.a);
+                }
+            }
             
             gl_FragColor = col;
         }
