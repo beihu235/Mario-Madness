@@ -77,7 +77,7 @@ class AndroidControls extends FlxSpriteGroup {
 
 		switch (mode){
 			case VIRTUALPAD_RIGHT:
-				initControler(5);
+				initControler(0);
 			case VIRTUALPAD_LEFT:
 				initControler(1);
 			case VIRTUALPAD_CUSTOM:
@@ -85,7 +85,11 @@ class AndroidControls extends FlxSpriteGroup {
 			case DUO:
 				initControler(3);
 			case HITBOX:
-		                initControler(0);
+		    if(ClientPrefs.hitboxmode != 'New'){
+				initControler(4);
+		    }else{
+		    initControler(5);
+		    }
 			case KEYBOARD:// nothing
 		}
 	}
@@ -112,8 +116,8 @@ class AndroidControls extends FlxSpriteGroup {
 			  newhbox = new FlxNewHitbox();
 			  add(newhbox);
 			default:
-				newhbox = new FlxNewHitbox();
-			        add(newhbox);					
+				vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);	
+				add(vpad);					
 		}
 	}
 
@@ -132,7 +136,7 @@ class AndroidControls extends FlxSpriteGroup {
 			case 5: 
 				KEYBOARD;
 			default: 
-				HITBOX;
+				VIRTUALPAD_RIGHT;
 		}
 	}
 }
