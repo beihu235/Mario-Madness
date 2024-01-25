@@ -67,7 +67,6 @@ class Main extends Sprite {
 		#if !debug
 		initialState = TitleState;
 		#end
-		FlxTransitionableState.skipNextTransOut = true;
 		
 		fpsVar = new FPS(10, 4, 0xFFFFFF);
                 
@@ -96,6 +95,8 @@ class Main extends Sprite {
 		#if html5
 		FlxG.autoPause = false;
 		#end
+	
+	        FlxG.signals.gameResized.add(onResizeGame);
 	}
 
 	function onResizeGame(w:Int, h:Int) {
