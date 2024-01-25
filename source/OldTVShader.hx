@@ -27,7 +27,7 @@ class OldTVShader extends FlxShader
             bool flag = false;
             bool flag2 = false;
 
-            vec2 uv = openfl_TextureCoordv;
+            vec2 uv = openfl_TextureCoordv.xy;
             
             //picture offset
             float time = 2.0;
