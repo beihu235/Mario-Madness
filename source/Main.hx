@@ -96,8 +96,6 @@ class Main extends Sprite {
 		#if html5
 		FlxG.autoPause = false;
 		#end
-
-		FlxG.signals.gameResized.add(onResizeGame);
 	}
 
 	function onResizeGame(w:Int, h:Int) {
