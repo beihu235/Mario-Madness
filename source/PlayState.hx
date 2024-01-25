@@ -4477,7 +4477,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			luaFile = Paths.getPreloadPath(luaFile);
+			luaFile = SUtil.getPath() + Paths.getPreloadPath(luaFile);
 			if (FileSystem.exists(luaFile))
 			{
 				doPush = true;
@@ -5630,7 +5630,7 @@ class PlayState extends MusicBeatState
 
                 #if android
 		addAndroidControls();
-		androidc.visible = false;
+		androidc.visible = true;
 		#end
 
 		if (noHUD)
@@ -6261,9 +6261,6 @@ class PlayState extends MusicBeatState
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
 		if (ret != FunkinLua.Function_Stop)
 		{
-			#if android
-			androidc.visible = true;
-			#end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
