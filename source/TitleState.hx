@@ -57,6 +57,10 @@ class TitleState extends MusicBeatState {
 	var startTime:Float;
 
 	override public function create():Void {
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+		
 		persistentUpdate = false;
 
 		if (!initialized) {
