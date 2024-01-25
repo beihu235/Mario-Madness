@@ -90,6 +90,10 @@ class MMOptions extends MusicBeatSubstate
 		verText.alpha = 0; verText.y += 20;
 		FlxTween.tween(verText, {y: verText.y - 20, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: .5});
 
+		#if android
+		addVirtualPad(UP_DOWN, A_B_C);
+		#end
+		
 		super.create();
 	}
 
@@ -126,6 +130,14 @@ class MMOptions extends MusicBeatSubstate
 			#end
 		}
 
+		#if android
+		if (_virtualpad.buttonC.justPressed) {
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+			MusicBeatState.switchState(new android.AndroidControlsMenu());
+		}
+		#end
+		
 		if (controls.ACCEPT)
 		{
 			for (item in grpOptions.members)
