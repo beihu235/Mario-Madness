@@ -2373,7 +2373,6 @@ class PlayState extends MusicBeatState
 				Lib.application.window.fullscreen = true;
 				fsX = Lib.application.window.width;
 				fsY = Lib.application.window.height;
-				Lib.application.window.fullscreen = false;
 				Lib.application.window.maximized = false;
 				Lib.application.window.resizable = false;
 
@@ -15770,11 +15769,13 @@ class PlayState extends MusicBeatState
 		super.destroy();
 			if (Lib.application.window.width == 800 && Lib.application.window.height == 600)
 			{
+				Lib.application.window.fullscreen = true;
 				Lib.application.window.move(Lib.application.window.x - 240, Lib.application.window.y - 60);
 				Lib.application.window.resize(1280, 720);
 			}
 			else if (PlayState.curStage == 'piracy')
 			{
+				Lib.application.window.fullscreen = true;
 				Lib.application.window.resize(1280, 720);
 				Lib.application.window.move(PlayState.ogwinX, PlayState.ogwinY);
 			}
@@ -15782,11 +15783,12 @@ class PlayState extends MusicBeatState
 			{
 				Lib.application.window.resize(1280, 720);
 				Lib.application.window.resizable = true;
-				Lib.application.window.fullscreen = false;
+				Lib.application.window.fullscreen = true;
 				Lib.application.window.maximized = false;
 			}
 			if (PlayState.curStage == 'virtual')
 			{
+				Lib.application.window.fullscreen = true;
 				Lib.application.window.resizable = true;
 				Lib.application.window.maximized = false;
 				Lib.application.window.borderless = false;
