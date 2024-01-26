@@ -117,7 +117,7 @@ class AndroidControls extends FlxSpriteGroup {
 	public static function getModeFromNumber(modeNum:Int):ControlsGroup {
 		return switch (modeNum){
 			case 0: 
-				VIRTUALPAD_RIGHT;
+				HITBOX;
 			case 1: 
 				VIRTUALPAD_LEFT;
 			case 2: 
@@ -125,7 +125,7 @@ class AndroidControls extends FlxSpriteGroup {
 			case 3: 
 				DUO;
 			case 4:	
-				HITBOX;
+				VIRTUALPAD_RIGHT;
 			case 5: 
 				KEYBOARD;
 			default: 
