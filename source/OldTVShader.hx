@@ -24,10 +24,10 @@ class OldTVShader extends FlxShader
         }
 
         void main() {
-            bool flag = false;
-            bool flag2 = false;
+            const bool flag = false;
+            const bool flag2 = false;
 
-            vec2 uv = openfl_TextureCoordv.xy;
+            vec2 uv = openfl_TextureCoordv;
             
             //picture offset
             float time = 2.0;
