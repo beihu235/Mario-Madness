@@ -23,7 +23,7 @@ class VCRBorder extends FlxShader
         }
 
         void main() {
-            vec2 uv = openfl_TextureCoordv.xy;
+            vec2 uv = openfl_TextureCoordv;
             uv = curve(uv);
             vec3 color = flixel_texture2D(bitmap, uv).rgb;
             float alpha = flixel_texture2D(bitmap, uv).a;
