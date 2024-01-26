@@ -886,13 +886,11 @@ class PlayState extends MusicBeatState
 
 		if (curStage == 'piracy')
 		{
-			Lib.application.window.resizable = false;
 			if(ogwinX == 0){
 				ogwinX = Lib.application.window.x;
 				ogwinY = Lib.application.window.y;
 			}
 			var win = Lib.application.window; // just to make this following line shorter
-			win.resize(1280, 720);
 
 			var camarasTODAS:Array<FlxCamera> = [camHUD, camEst, camOther];
 
@@ -908,8 +906,6 @@ class PlayState extends MusicBeatState
 
 		if (curStage == 'somari')
 		{
-			Lib.application.window.fullscreen = true;
-			Lib.application.window.resizable = false;
 
 			if (Lib.application.window.maximized == false)
 			{
@@ -922,19 +918,15 @@ class PlayState extends MusicBeatState
 			{
 				Lib.application.window.maximized = false;
 			}
-			Lib.application.window.resize(1280, 720);
 
 			stream = 1;
-			Lib.application.window.resizable = false;
 			var camarasTODAS:Array<FlxCamera> = [camGame, camHUD, camEst, camOther];
 
 			for (camera in camarasTODAS)
 			{
 				camera.x = -300;
-				FlxG.camera.x = -300;
 
 				camera.y = -210;
-				FlxG.camera.y = -210;
 			}
 
 			if (hasDownScroll)
