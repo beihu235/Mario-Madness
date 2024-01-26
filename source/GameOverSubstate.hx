@@ -570,6 +570,10 @@ class GameOverSubstate extends MusicBeatSubstate
 			}
 		}
 
+		if(lePlayState.oldFX != null && ClientPrefs.filtro85){
+		lePlayState.oldFX.update(elapsed);
+		}
+		
 		if(lePlayState.staticShader != null){
 			lePlayState.staticShader.update(elapsed);
 		}
