@@ -11,15 +11,6 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.system.System;
-#if cpp
-import cpp.vm.Gc;
-#elseif hl
-import hl.Gc;
-#elseif java
-import java.vm.Gc;
-#elseif neko
-import neko.vm.Gc;
-#end
 
 class Main extends Sprite {
 	public static var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
@@ -81,11 +72,9 @@ class Main extends Sprite {
 				Paths.clearStoredMemory(true);
 				FlxG.bitmap.dumpCache();
 			}
-			clearMajor();
 		});
 		FlxG.signals.postStateSwitch.add(function () {
 			Paths.clearUnusedMemory();
-			clearMajor();
 			Main.skipNextDump = false;
 		});
 
@@ -123,17 +112,6 @@ class Main extends Sprite {
 				sprite.__cacheBitmapColorTransform = null;
 			}
 		}
-	}
-
-	public static function clearMajor() {
-		#if cpp
-		Gc.run(true);
-		Gc.compact();
-		#elseif hl
-		Gc.major();
-		#elseif (java || neko)
-		Gc.run(true);
-		#end
 	}
 }
 
