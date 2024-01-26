@@ -7,7 +7,6 @@ import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionableState;
-import android.FlxHitbox;
 import android.FlxNewHitbox;
 import android.AndroidControls.Config;
 import android.FlxVirtualPad;
@@ -17,7 +16,6 @@ using StringTools;
 class AndroidControlsMenu extends MusicBeatState
 {
 	var vpad:FlxVirtualPad;
-	var hbox:FlxHitbox;
 	var newhbox:FlxNewHitbox;
 	var upPozition:FlxText;
 	var downPozition:FlxText;
@@ -52,10 +50,6 @@ class AndroidControlsMenu extends MusicBeatState
 		vpad = new FlxVirtualPad(RIGHT_FULL, NONE, 0.75, ClientPrefs.globalAntialiasing);
 		vpad.alpha = 0;
 		add(vpad);
-
-		hbox = new FlxHitbox(0.75, ClientPrefs.globalAntialiasing);
-		hbox.visible = false;
-		add(hbox);
 		
 		newhbox = new FlxNewHitbox();
 		newhbox.visible = false;
@@ -182,7 +176,6 @@ class AndroidControlsMenu extends MusicBeatState
 
 		if (daChoice != "Hitbox")
 		{
-			hbox.visible = false;
 			newhbox.visible = false;
 		}
 		else
