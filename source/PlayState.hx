@@ -7230,6 +7230,11 @@ class PlayState extends MusicBeatState
 			vcr.update(elapsed);
 		}
 
+		if (oldTV && ClientPrefs.filtro85)
+		{
+			oldFX.update(elapsed);
+		}
+		
 		if(curStage == 'piracy'){
 			if(dsTimer <= 0){
 				if(canvas.visible) writeGone();
