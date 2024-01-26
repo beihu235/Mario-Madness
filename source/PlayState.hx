@@ -55,7 +55,7 @@ import VideoSprite;
 import lime.app.Application;
 import lime.utils.Assets;
 import modchart.*;
-
+import openfl.Lib;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
@@ -892,12 +892,7 @@ class PlayState extends MusicBeatState
 				ogwinY = Lib.application.window.y;
 			}
 			var win = Lib.application.window; // just to make this following line shorter
-			win.move(win.x + Std.int((win.width - 512) / 2), win.y + Std.int((win.height - 768) / 2));
-			win.resize(512, 768);
-			Lib.current.x = 0;
-			Lib.current.y = 0;
-			Lib.current.scaleX = 2.665;
-			Lib.current.scaleY = 2.665;
+			win.resize(1280, 720);
 
 			var camarasTODAS:Array<FlxCamera> = [camHUD, camEst, camOther];
 
@@ -913,30 +908,24 @@ class PlayState extends MusicBeatState
 
 		if (curStage == 'somari')
 		{
-			Lib.application.window.fullscreen = false;
+			Lib.application.window.fullscreen = true;
 			Lib.application.window.resizable = false;
 
 			if (Lib.application.window.maximized == false)
 			{
 				if (Lib.application.window.width == 1280 && Lib.application.window.height == 720)
 				{
-					Lib.application.window.move(winx + 240, winy + 60);
+				
 				}
 			}
 			else
 			{
 				Lib.application.window.maximized = false;
-				Lib.application.window.move(560, 240);
 			}
-			Lib.application.window.resize(800, 600);
+			Lib.application.window.resize(1280, 720);
 
 			stream = 1;
 			Lib.application.window.resizable = false;
-
-			Lib.current.x = 0;
-			Lib.current.y = 0;
-			Lib.current.scaleX = 1.8;
-			Lib.current.scaleY = 1.8;
 			var camarasTODAS:Array<FlxCamera> = [camGame, camHUD, camEst, camOther];
 
 			for (camera in camarasTODAS)
