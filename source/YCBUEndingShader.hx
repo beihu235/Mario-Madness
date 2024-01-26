@@ -48,7 +48,7 @@ class YCBUEndingShader extends FlxShader
 
         void main()
         {
-            vec2 uv = openfl_TextureCoordv.xy;
+            vec2 uv = openfl_TextureCoordv;
             vec2 fragCoord = openfl_TextureSize * uv;
             uv = vec2(uv.x + offset(vec2(fragCoord.x, sin(mod(fragCoord.y, 200.0) / 15.84))), uv.y);
             float gl1 = glitch(uv, LINES1, floor(seed*2.0));
