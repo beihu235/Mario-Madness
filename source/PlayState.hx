@@ -4947,7 +4947,7 @@ class PlayState extends MusicBeatState
 		for (notetype in noteTypeMap.keys())
 		{
 			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
-			if (FileSystem.exists(SUtil.getPath() + luaToLoad))
+			if (FileSystem.exists(luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
@@ -4955,7 +4955,7 @@ class PlayState extends MusicBeatState
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
-			if (FileSystem.exists(SUtil.getPath() + luaToLoad))
+			if (FileSystem.exists(luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
@@ -7228,11 +7228,6 @@ class PlayState extends MusicBeatState
 		if (tvEffect && ClientPrefs.filtro85)
 		{
 			vcr.update(elapsed);
-		}
-
-		if (oldTV && ClientPrefs.filtro85)
-		{
-			oldFX.update(elapsed);
 		}
 
 		if(curStage == 'piracy'){
