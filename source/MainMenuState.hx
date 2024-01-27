@@ -753,7 +753,10 @@ class MainMenuState extends MusicBeatState {
 				case 2:
 					switch (choice) {
 						case "Options":
-							new FlxTimer().start(0.4, function(tmr:FlxTimer) {FlxG.state.persistentDraw = false; openSubState(new MMOptions());});
+							new FlxTimer().start(0.4, function(tmr:FlxTimer)
+							{
+							        MusicBeatState.switchState(new MMOptions());
+							});
 						case "Credits":
 							CreditsState.autoscroll = false;
 							MusicBeatState.switchState(new CreditsState());
