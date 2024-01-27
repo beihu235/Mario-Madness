@@ -38,7 +38,7 @@ class OldTVShader extends FlxShader
             float updateRate2 = 50.0;
             float uvyMul = 100.0;
             
-            float realSize = lineSize / openfl_TextureSize.y / 2.;
+            float realSize = lineSize / openfl_TextureSize.y / 2.0;
             float position = mod(iTime, timeMod) / time;
             float position2 = 99.;
             if (iTime > repeatTime) {
@@ -82,9 +82,9 @@ class OldTVShader extends FlxShader
             float cutoff2 = 0.92;
             float valMul2 = 0.007;
             
-            float val2 = hash(uvec3(uv.y * uvyMul3, 0.0, iTime * updateRate4)).x;
+            float val2 = hash(uvec3(uv.y * uvyMul3, 0., iTime * updateRate4)).x;
             if (val2 > cutoff2) {
-                float adjVal2 = (val2 - cutoff2) * valMul2 * (1.0 / (1.0 - cutoff2));
+                float adjVal2 = (val2 - cutoff2) * valMul2 * (1. / (1. - cutoff2));
                 if (uv.x < adjVal2) {
                     col = id.xxxy;
                     flag2 = true;
@@ -112,7 +112,7 @@ class OldTVShader extends FlxShader
                 float val = hash(uvec3(uv.x * uvxMul, uv.y * uvyMul2, iTime * updateRate3)).x;
                 if (val > cutoff) {
                     float offset = hash(uvec3(uv.y * uvyMul2, uv.x * uvxMul, iTime * updateRate3)).x;
-                    float adjVal = (val - cutoff) * valMul * (1.0 / (1.0 - cutoff));
+                    float adjVal = (val - cutoff) * valMul * (1. / (1. - cutoff));
                     adjVal -= abs((uv.x * uvxMul - (floor(uv.x * uvxMul) + offset)) * falloffMul);
                     adjVal = clamp(adjVal, 0., 1.);
                     col = vec4(mix(col.rgb, id.yyy, adjVal), col.a);
