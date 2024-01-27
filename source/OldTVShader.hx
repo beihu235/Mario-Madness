@@ -8,10 +8,10 @@ class OldTVShader extends FlxShader
 {
 	@:glFragmentSource('
         #pragma header
-        #define id vec2(0.0,1.0)
+        #define id vec2(0.,1.)
         #define k 1103515245U
         #define PI 3.141592653
-        #define TAU PI * 2.0
+        #define TAU PI * 2.
 
         uniform float iTime;
 
@@ -38,18 +38,18 @@ class OldTVShader extends FlxShader
             float updateRate2 = 50.0;
             float uvyMul = 100.0;
             
-            float realSize = lineSize / openfl_TextureSize.y / 2.0;
+            float realSize = lineSize / openfl_TextureSize.y / 2.;
             float position = mod(iTime, timeMod) / time;
-            float position2 = 99.0;
+            float position2 = 99.;
             if (iTime > repeatTime) {
                 position2 = mod(iTime - repeatTime, timeMod) / time;
             }
             if (!(uv.y - position > realSize || uv.y - position < -realSize)) {
-                uv.x -= hash(uvec3(0.0, uv.y * uvyMul, iTime * updateRate2)).x * offsetMul;
+                uv.x -= hash(uvec3(0., uv.y * uvyMul, iTime * updateRate2)).x * offsetMul;
                 flag = true;
-            } else if (position2 != 99.0) {
+            } else if (position2 != 99.) {
                 if (!(uv.y - position2 > realSize || uv.y - position2 < -realSize)) {
-                    uv.x -= hash(uvec3(0.0, uv.y * uvyMul, iTime * updateRate2)).x * offsetMul;
+                    uv.x -= hash(uvec3(0., uv.y * uvyMul, iTime * updateRate2)).x * offsetMul;
                     flag = true;
                 }
             }
@@ -70,7 +70,7 @@ class OldTVShader extends FlxShader
             col /= quality * directions - 14.0;
             
             //for the black on the left
-            if (uv.x < 0.0) {
+            if (uv.x < 0.) {
                 col = id.xxxy;
                 flag = false;
                 flag2 = true;
@@ -97,7 +97,7 @@ class OldTVShader extends FlxShader
             if (!flag2) {
                 float updateRate = 100.0;
                 float mixPercent = 0.05; 
-                col = mix(col, vec4(hash(uvec3(uv * openfl_TextureSize, iTime * updateRate)).rrr, 1.0), mixPercent);
+                col = mix(col, vec4(hash(uvec3(uv * openfl_TextureSize, iTime * updateRate)).rrr, 1.), mixPercent);
             }
             
             //white sploches
@@ -114,7 +114,7 @@ class OldTVShader extends FlxShader
                     float offset = hash(uvec3(uv.y * uvyMul2, uv.x * uvxMul, iTime * updateRate3)).x;
                     float adjVal = (val - cutoff) * valMul * (1.0 / (1.0 - cutoff));
                     adjVal -= abs((uv.x * uvxMul - (floor(uv.x * uvxMul) + offset)) * falloffMul);
-                    adjVal = clamp(adjVal, 0.0, 1.0);
+                    adjVal = clamp(adjVal, 0., 1.);
                     col = vec4(mix(col.rgb, id.yyy, adjVal), col.a);
                 }
             }
