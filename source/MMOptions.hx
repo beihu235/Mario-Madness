@@ -35,7 +35,7 @@ import Discord.DiscordClient;
 
 // TO DO: Redo the menu creation system for not being as dumb
 // Yeah seems like a reasonable goal to me
-class MMOptions extends MusicBeatSubstate
+class MMOptions extends MusicBeatstate
 {
 	var options:Array<String> = ['Notes', 'Controls', 'Preferences', 'Mario Options', 'Delete Data'];
 	private var grpOptions:FlxTypedGroup<FlxText>;
@@ -61,10 +61,6 @@ class MMOptions extends MusicBeatSubstate
         FlxG.camera.bgColor = 0x00FFFFFF;
 
         FlxG.camera.zoom = 0.95;
-		MainMenuState.instance.lerpCamZoom = true;
-		MainMenuState.instance.camZoomMulti = 0.94;
-        
-		FlxG.state.persistentDraw = true;
 
 		grpOptions = new FlxTypedGroup<FlxText>();
 		add(grpOptions);
@@ -121,7 +117,7 @@ class MMOptions extends MusicBeatSubstate
 		if (controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			FlxG.state.closeSubState();
+			MusicBeatState.switchState(new MainMenuState());
 			FlxG.mouse.visible = true;
 			FlxG.sound.music.stop();
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
