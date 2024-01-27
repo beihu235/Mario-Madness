@@ -790,7 +790,7 @@ class PlayState extends MusicBeatState
 	var alreadychange:Bool = false;
 	var alreadychange2:Bool = true;
 	var oldTV:Bool;
-	
+	public var oldFX:OldTVShader;
 	public var contrastFX:BrightnessContrastShader;
 	var beatend:YCBUEndingShader;
 	var angel:AngelShader;
@@ -5681,7 +5681,6 @@ class PlayState extends MusicBeatState
 				camGame.setFilters([new ShaderFilter(oldFX)]);
 				camEst.setFilters([new ShaderFilter(oldFX)]);
 				camHUD.setFilters([new ShaderFilter(oldFX)]);
-				FlxG.camera.setFilters([new ShaderFilter(oldFX)]);
 			}
 		}
 
