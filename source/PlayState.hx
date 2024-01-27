@@ -5681,6 +5681,7 @@ class PlayState extends MusicBeatState
 				camGame.setFilters([new ShaderFilter(oldFX)]);
 				camEst.setFilters([new ShaderFilter(oldFX)]);
 				camHUD.setFilters([new ShaderFilter(oldFX)]);
+				FlxG.camera.setFilters([new ShaderFilter(oldFX)]);
 			}
 		}
 
