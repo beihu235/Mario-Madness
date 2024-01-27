@@ -37,7 +37,7 @@ uniform bool mirrorS;
 
 void main()
 {
-        vec2 uv = openfl_TextureCoordv*openfl_TextureSize/openfl_TextureSize.xy;
+        vec2 uv = openfl_TextureCoordv*openfl_TextureSize;
             uv.x *= multi;
             uv.y *= multi;
         uv = fract(uv);
