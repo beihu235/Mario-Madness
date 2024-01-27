@@ -43,6 +43,7 @@
 	<define name="MODS_ALLOWED" if="desktop || android" />
 	<define name="LUA_ALLOWED" if="windows || android" />
 	<define name="VIDEOS_ALLOWED" if="web || windows || android" unless="32"/>
+	<define name="CRASH_HANDLER" if="desktop release || android" />
 	
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
