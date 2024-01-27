@@ -1,5 +1,6 @@
 package;
 
+import flixel.graphics.FlxGraphic;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -22,6 +23,8 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
 #end
+
+using StringTools;
 
 class Main extends Sprite {
 	public static var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
