@@ -52,7 +52,7 @@ class StoryMenuState extends MusicBeatSubstate
 
 	var opUp:FlxObject;
 	var opDown:FlxObject;
-	var vid:VideoSprite;
+	var vid:VideoHandler;
 
 	var staticShader:TVStatic;
 	var dumbTween:FlxTween;
@@ -238,7 +238,6 @@ class StoryMenuState extends MusicBeatSubstate
 		}
 		else if(controls.ACCEPT && inCutscene){
 			finishVideo();
-			vid.bitmap.stop();
 		}
 
 		charsShader.update(elapsed);
@@ -394,11 +393,8 @@ class StoryMenuState extends MusicBeatSubstate
 				inCutscene = true;
 				MainMenuState.instance.lerpCamZoom = false;
 				FlxG.camera.zoom = 1;
-				vid = new VideoSprite();
-				vid.scrollFactor.set(0, 0);
+				vid = new VideoHandler();
 				vid.playVideo(Paths.video(name));
-				
-				add(vid);
 
 				FlxG.camera.filtersEnabled = false;
 				vid.finishCallback = function()
@@ -413,7 +409,6 @@ class StoryMenuState extends MusicBeatSubstate
 
 	public function finishVideo():Void{
 		FlxG.camera.filtersEnabled = true;
-		vid.destroy();
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				remove(bg);
