@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxStringUtil;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -11,6 +12,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.system.System;
+import cpp.vm.Gc;
 
 class Main extends Sprite {
 	public static var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
@@ -72,9 +74,11 @@ class Main extends Sprite {
 				Paths.clearStoredMemory(true);
 				FlxG.bitmap.dumpCache();
 			}
+			clearMajor();
 		});
 		FlxG.signals.postStateSwitch.add(function () {
 			Paths.clearUnusedMemory();
+			clearMajor();
 			Main.skipNextDump = false;
 		});
 
@@ -112,6 +116,11 @@ class Main extends Sprite {
 				sprite.__cacheBitmapColorTransform = null;
 			}
 		}
+	}
+	public static function clearMajor() {
+		Gc.run(true);
+		Gc.compact();
+		trace(FlxStringUtil.formatBytes(Gc.memUsage(), 1));
 	}
 }
 
