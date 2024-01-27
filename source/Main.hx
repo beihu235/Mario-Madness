@@ -14,6 +14,7 @@ import openfl.system.System;
 import cpp.vm.Gc;
 
 #if CRASH_HANDLER
+import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
 import haxe.io.Path;
