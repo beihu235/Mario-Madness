@@ -8,6 +8,7 @@ class VCRMario85 extends FlxShader // https://www.shadertoy.com/view/ldjGzV and 
   #pragma header
 
   uniform float time;
+  uniform vec3 g;
 
   // mostly stolen from https://www.shadertoy.com/view/ldXGW4
 
@@ -34,13 +35,12 @@ class VCRMario85 extends FlxShader // https://www.shadertoy.com/view/ldjGzV and 
                           0.024390243902439); // 1.0 / 41.0
       // First corner
       vec2 i  = floor(v + dot(v, C.yy) );
-      vec2 x0 = v -   i + dot(i, C.xx);
+      vec2 x0 = v - i + dot(i, C.xx);
 
       // Other corners
-      vec2 i1;
       //i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0
       //i1.y = 1.0 - i1.x;
-      i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+      vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
       // x0 = x0 - 0.0 + 0.0 * C.xx ;
       // x1 = x0 - i1 + 1.0 * C.xx ;
       // x2 = x0 - 1.0 + 2.0 * C.xx ;
@@ -69,8 +69,7 @@ class VCRMario85 extends FlxShader // https://www.shadertoy.com/view/ldjGzV and 
       m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
 
       // Compute final noise value at P
-      vec3 g;
-      g.x  = a0.x  * x0.x  + h.x  * x0.y;
+      g.x = a0.x  * x0.x  + h.x  * x0.y;
       g.yz = a0.yz * x12.xz + h.yz * x12.yw;
       return 130.0 * dot(m, g);
   }
