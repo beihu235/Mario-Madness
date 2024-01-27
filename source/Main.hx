@@ -1,6 +1,5 @@
 package;
 
-import flixel.util.FlxStringUtil;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -120,7 +119,6 @@ class Main extends Sprite {
 	public static function clearMajor() {
 		Gc.run(true);
 		Gc.compact();
-		trace(FlxStringUtil.formatBytes(Gc.memUsage(), 1));
 	}
 }
 
