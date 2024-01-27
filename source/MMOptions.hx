@@ -35,7 +35,7 @@ import Discord.DiscordClient;
 
 // TO DO: Redo the menu creation system for not being as dumb
 // Yeah seems like a reasonable goal to me
-class MMOptions extends MusicBeatstate
+class MMOptions extends MusicBeatState
 {
 	var options:Array<String> = ['Notes', 'Controls', 'Preferences', 'Mario Options', 'Delete Data'];
 	private var grpOptions:FlxTypedGroup<FlxText>;
