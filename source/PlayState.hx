@@ -897,10 +897,8 @@ class PlayState extends MusicBeatState
 			for (camera in camarasTODAS)
 			{
 				camera.x = 0;
-				FlxG.camera.x = 0;
 
-				camera.y = -600;
-				FlxG.camera.y = -600;
+				camera.y = 0;
 			}
 		}
 
@@ -924,15 +922,14 @@ class PlayState extends MusicBeatState
 
 			for (camera in camarasTODAS)
 			{
-				camera.x = -300;
+				camera.x = 0;
 
-				camera.y = -210;
+				camera.y = 0;
 			}
 
 			if (hasDownScroll)
 			{
-				camera.y = -260;
-				FlxG.camera.y = -260;
+				camera.y = 0;
 			}
 		}
 
