@@ -1479,40 +1479,40 @@ class WorldState extends MusicBeatSubstate
 	
 					if (!FlxG.keys.pressed.SHIFT)
 					{
-						if (controls.UI_UP_P)
+						if (FlxG.keys.pressed.UP)
 						{
 							thing.y -= mov;
 						}
-						else if (controls.UI_DOWN_P)
+						else if (FlxG.keys.pressed.DOWN)
 						{
 							thing.y += mov;
 						}
 					
-						if (controls.UI_LEFT_P)
+						if (FlxG.keys.pressed.LEFT)
 						{
 							thing.x -= mov;
 						}
-						else if (controls.UI_RIGHT_P)
+						else if (FlxG.keys.pressed.RIGHT)
 						{
 							thing.x += mov;
 						}
 					}
 					else
 					{
-						if (controls.UI_UP_P)
+						if (FlxG.keys.pressed.UP)
 						{
 							thing.y -= mov;
 						}
-						else if (controls.UI_DOWN_P)
+						else if (FlxG.keys.pressed.DOWN)
 						{
 							thing.y += mov;
 						}
 					
-						if (controls.UI_LEFT_P)
+						if (FlxG.keys.pressed.LEFT)
 						{
 							thing.x -= mov;
 						}
-						else if (controls.UI_RIGHT_P)
+						else if (FlxG.keys.pressed.RIGHT)
 						{
 							thing.x += mov;
 						}
@@ -2134,40 +2134,40 @@ class UltraState extends MusicBeatSubstate
 	
 				if (!FlxG.keys.pressed.SHIFT)
 				{
-					if (controls.UI_UP_P)
+					if (FlxG.keys.pressed.UP)
 					{
 						thing.y -= mov;
 					}
-					else if (controls.UI_DOWN_P)
+					else if (FlxG.keys.pressed.DOWN)
 					{
 						thing.y += mov;
 					}
 	
-					if (controls.UI_LEFT_P)
+					if (FlxG.keys.pressed.LEFT)
 					{
 						thing.x -= mov;
 					}
-					else if (controls.UI_RIGHT_P)
+					else if (FlxG.keys.pressed.RIGHT)
 					{
 						thing.x += mov;
 					}
 				}
 				else
 				{
-					if (controls.UI_UP_P)
+					if (FlxG.keys.pressed.UP)
 					{
 						thing.y -= mov;
 					}
-					else if (controls.UI_DOWN_P)
+					else if (FlxG.keys.pressed.DOWN)
 					{
 						thing.y += mov;
 					}
 	
-					if (controls.UI_LEFT_P)
+					if (FlxG.keys.pressed.LEFT)
 					{
 						thing.x -= mov;
 					}
-					else if (controls.UI_RIGHT_P)
+					else if (FlxG.keys.pressed.RIGHT)
 					{
 						thing.x += mov;
 					}
