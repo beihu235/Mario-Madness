@@ -277,11 +277,11 @@ class NotesSubstate extends MusicBeatSubstate
 					resetValue(curSelected, typeSelected);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
-				if (FlxG.keys.justReleased.RIGHT || FlxG.keys.justReleased.RIGHT)
+				if (controls.UI_LEFT_R || controls.UI_RIGHT_R)
 				{
 					holdTime = 0;
 				}
-				else if (FlxG.keys.pressed.LEFT || FlxG.keys.pressed.RIGHT)
+				else if (controls.UI_LEFT || controls.UI_RIGHT)
 				{
 					holdTime += elapsed;
 				}
@@ -294,15 +294,15 @@ class NotesSubstate extends MusicBeatSubstate
 					case 1 | 2:
 						add = 50;
 				}
-				if (FlxG.keys.pressed.LEFT)
+				if (controls.UI_LEFT)
 				{
 					updateValue(elapsed * -add);
 				}
-				else if (FlxG.keys.pressed.RIGHT)
+				else if (controls.UI_RIGHT)
 				{
 					updateValue(elapsed * add);
 				}
-				if (FlxG.keys.justReleased.RIGHT || FlxG.keys.justReleased.RIGHT)
+				if (controls.UI_LEFT_R || controls.UI_RIGHT_R)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					holdTime = 0;
