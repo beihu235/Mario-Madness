@@ -5,6 +5,7 @@ import Discord.DiscordClient;
 #end
 import flash.text.TextField;
 import flixel.FlxCamera;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -331,6 +332,11 @@ class WarpState extends MusicBeatState
 		if(pipeCut) openSubState(new PipeState());
 
 
+		#if android
+		addVirtualPad(LEFT_RIGHT, A_B);
+		addPadCamera();
+		#end
+		
 		// try {
 		//	transition = new SMWPixelBlurShader();
 		//	FlxG.camera.setFilters([new ShaderFilter(transition)]);
@@ -374,12 +380,12 @@ class WarpState extends MusicBeatState
 						goodbye();
 					}
 
-				if (FlxG.keys.justPressed.LEFT)
+				if (controls.UI_LEFT_P)
 				{
 					quieto = false;
 					caminar(canciones[curSelected][3]);
 				}
-				else if (FlxG.keys.justPressed.RIGHT)
+				else if (controls.UI_RIGHT_P)
 				{
 					quieto = false;
 					caminar(canciones[curSelected][4]);
@@ -585,6 +591,9 @@ class WarpState extends MusicBeatState
 							new FlxTimer().start(0.1 * i, function(tmr:FlxTimer)
 								{
 									if(i == 5){
+										#if android
+				                                                removeVirtualPad();
+				                                                #end
 										openSubState(new WorldState());
 										pibemapa.y = fnaf;
 										pibemapa.animation.play('idle');
@@ -606,7 +615,10 @@ class WarpState extends MusicBeatState
 						if(i == 5){
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 								{
-							openSubState(new UltraState());
+							        #if android
+				                                removeVirtualPad();
+				                                #end
+								openSubState(new UltraState());
 								});
 							pibemapa.animation.play('idle');
 							quieto = true;
@@ -673,6 +685,9 @@ class WarpState extends MusicBeatState
 	public function goToWorld():Void
 		{
 			FlxG.sound.music.stop();
+			#if android
+			removeVirtualPad();
+			#end
 			openSubState(new WorldState());
 		}
 }
@@ -1119,6 +1134,11 @@ class WorldState extends MusicBeatSubstate
 				
 			}
 		super.create();
+		
+		#if android
+		addVirtualPad(FULL, A_B);
+		addPadCamera();
+		#end
 		camFollow = new FlxObject(0, 0, 1, 1);
 		if(WarpState.curSelected >= 4){
 			var limits = [773, 535, 425, -16];
@@ -1174,7 +1194,7 @@ class WorldState extends MusicBeatSubstate
 					}
 
 					if(pibeback.animation.curAnim.name != 'enter' && quieto){
-					if (FlxG.keys.pressed.ESCAPE && curSelected != 0){
+					if (FlxG.keys.pressed.ESCAPE #if android || _virtualpad.buttonB.justPressed #end && curSelected != 0){
 							if(pipeTimer == 0){
 								
 								pibeback.animation.play('intro');
@@ -1216,19 +1236,19 @@ class WorldState extends MusicBeatSubstate
 
 
 			if(quieto && pipeTimer == 0){
-				if (FlxG.keys.justPressed.UP)
+				if (controls.UI_UP_P)
 				{
 					caminar(canciones[curSelected][1], 1);
 				}
-				else if (FlxG.keys.justPressed.DOWN)
+				else if (controls.UI_DOWN_P)
 				{
 					caminar(canciones[curSelected][2], 2);
 				}
-				else if (FlxG.keys.justPressed.LEFT)
+				else if (controls.UI_LEFT_P)
 				{
 					caminar(canciones[curSelected][3], 3);
 				}
-				else if (FlxG.keys.justPressed.RIGHT)
+				else if (controls.UI_RIGHT_P)
 				{
 					caminar(canciones[curSelected][4], 4);
 				}
@@ -1262,7 +1282,12 @@ class WorldState extends MusicBeatSubstate
 												FlxG.sound.playMusic(Paths.music('warpzone/0'), 0);
 												FlxG.sound.music.fadeIn(1, 0, 0.5);
 												camWorld.scroll.y = 0;
-												close();
+												#if android
+				                                                                FlxTransitionableState.skipNextTransOut = true;
+				                                                                FlxG.resetState();
+				                                                                #else
+				                                                                close();
+				                                                                #end
 											}else{
 											blackScreen.alpha += 0.2;
 											}
@@ -1390,6 +1415,9 @@ class WorldState extends MusicBeatSubstate
 									FlxG.switchState(new PartyState());
 								}else if(thesong == "paranoia"){
 									FlxG.camera.visible = true;
+									#if android
+				                                        removeVirtualPad();
+				                                        #end
 									openSubState(new VirtualState());
 								}else{
 									LoadingState.loadAndSwitchState(new PlayState());
@@ -1451,40 +1479,40 @@ class WorldState extends MusicBeatSubstate
 	
 					if (!FlxG.keys.pressed.SHIFT)
 					{
-						if (FlxG.keys.pressed.UP)
+						if (controls.UI_UP_P)
 						{
 							thing.y -= mov;
 						}
-						else if (FlxG.keys.pressed.DOWN)
+						else if (controls.UI_DOWN_P)
 						{
 							thing.y += mov;
 						}
 					
-						if (FlxG.keys.pressed.LEFT)
+						if (controls.UI_LEFT_P)
 						{
 							thing.x -= mov;
 						}
-						else if (FlxG.keys.pressed.RIGHT)
+						else if (controls.UI_RIGHT_P)
 						{
 							thing.x += mov;
 						}
 					}
 					else
 					{
-						if (FlxG.keys.justPressed.UP)
+						if (controls.UI_UP_P)
 						{
 							thing.y -= mov;
 						}
-						else if (FlxG.keys.justPressed.DOWN)
+						else if (controls.UI_DOWN_P)
 						{
 							thing.y += mov;
 						}
 					
-						if (FlxG.keys.justPressed.LEFT)
+						if (controls.UI_LEFT_P)
 						{
 							thing.x -= mov;
 						}
-						else if (FlxG.keys.justPressed.RIGHT)
+						else if (controls.UI_RIGHT_P)
 						{
 							thing.x += mov;
 						}
@@ -1766,7 +1794,12 @@ class WorldState extends MusicBeatSubstate
 								camWorld.scroll.x = 0;
 								curSelected = 0;
 								WarpState.worldSelected = 0;
-								close();
+								#if android
+				                                FlxTransitionableState.skipNextTransOut = true;
+				                                FlxG.resetState();
+				                                #else
+				                                close();
+				                                #end
 							}else{
 							blackScreen.alpha += 0.2;
 							}
@@ -2004,6 +2037,11 @@ class UltraState extends MusicBeatSubstate
 		//quieto = true;
 
 		//camWorld.zoom = 0.3333;
+	
+	        #if android
+		addVirtualPad(UP_DOWN, A);
+		addPadCamera();
+		#end
 	}
 	var mov:Float = 1;
 	var datos:String = '';
@@ -2043,7 +2081,7 @@ class UltraState extends MusicBeatSubstate
 							gotoSong();
 						}
 
-					if (FlxG.keys.justPressed.UP && cutScenes == 0)
+					if (controls.UI_UP_P && cutScenes == 0)
 						{
 							quieto = false;
 							caminar();
@@ -2096,40 +2134,40 @@ class UltraState extends MusicBeatSubstate
 	
 				if (!FlxG.keys.pressed.SHIFT)
 				{
-					if (FlxG.keys.pressed.UP)
+					if (controls.UI_UP_P)
 					{
 						thing.y -= mov;
 					}
-					else if (FlxG.keys.pressed.DOWN)
+					else if (controls.UI_DOWN_P)
 					{
 						thing.y += mov;
 					}
 	
-					if (FlxG.keys.pressed.LEFT)
+					if (controls.UI_LEFT_P)
 					{
 						thing.x -= mov;
 					}
-					else if (FlxG.keys.pressed.RIGHT)
+					else if (controls.UI_RIGHT_P)
 					{
 						thing.x += mov;
 					}
 				}
 				else
 				{
-					if (FlxG.keys.justPressed.UP)
+					if (controls.UI_UP_P)
 					{
 						thing.y -= mov;
 					}
-					else if (FlxG.keys.justPressed.DOWN)
+					else if (controls.UI_DOWN_P)
 					{
 						thing.y += mov;
 					}
 	
-					if (FlxG.keys.justPressed.LEFT)
+					if (controls.UI_LEFT_P)
 					{
 						thing.x -= mov;
 					}
-					else if (FlxG.keys.justPressed.RIGHT)
+					else if (controls.UI_RIGHT_P)
 					{
 						thing.x += mov;
 					}
