@@ -5634,18 +5634,12 @@ class PlayState extends MusicBeatState
 				camGame.setFilters([new ShaderFilter(border)]);
 				camEst.setFilters([new ShaderFilter(border)]);
 				camHUD.setFilters([new ShaderFilter(border)]);
-
-				vcr = new VCRMario85();
-
-				camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
-				camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
-				camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
-
+				
 				if(curStage == 'nesbeat'){
 					beatend = new YCBUEndingShader();
 					angel = new AngelShader();
-					camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(beatend), new ShaderFilter(angel)]);
-					camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(angel)]);
+					camGame.setFilters([new ShaderFilter(border), new ShaderFilter(beatend), new ShaderFilter(angel)]);
+					camEst.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
 
 				if (oldTV)
@@ -5654,13 +5648,13 @@ class PlayState extends MusicBeatState
 					{
 						oldFX = new OldTVShader();
 
-						camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camEst.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camHUD.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
 
 						contrastFX = new BrightnessContrastShader();
 
-						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(oldFX), new ShaderFilter(border)]);
 					}
 				}
 			}
@@ -7212,10 +7206,6 @@ class PlayState extends MusicBeatState
 				if(note.botplaySkin)
 					note.reloadNote('', 'Luigi_NOTE_assets');
 			});
-		}
-		if (tvEffect && ClientPrefs.filtro85)
-		{
-			vcr.update(elapsed);
 		}
 
 		if (oldTV && ClientPrefs.filtro85)
