@@ -494,20 +494,20 @@ class WarpState extends MusicBeatState
 			else
 			{
 				worldText.text = 'MUNDOS:\nW1:' + ClientPrefs.worldsALT[0] + '\nW2:' + ClientPrefs.worldsALT[1] + '\nW3:' + ClientPrefs.worldsALT[2] + '\nW4:' + ClientPrefs.worldsALT[3] + '\nW5:' + ClientPrefs.worldsALT[4];
-				if (FlxG.keys.justPressed.UP)
+				if (controls.UI_UP)
 				{
 					thing.y -= mov;
 				}
-				else if (FlxG.keys.justPressed.DOWN)
+				else if (controls.UI_DOWN)
 				{
 					thing.y += mov;
 				}
 
-				if (FlxG.keys.justPressed.LEFT)
+				if (controls.UI_LEFT)
 				{
 					thing.x -= mov;
 				}
-				else if (FlxG.keys.justPressed.RIGHT)
+				else if (controls.UI_RIGHT)
 				{
 					thing.x += mov;
 				}
@@ -1499,20 +1499,20 @@ class WorldState extends MusicBeatSubstate
 					}
 					else
 					{
-						if (controls.UI_UP_P)
+						if (controls.UI_UP)
 						{
 							thing.y -= mov;
 						}
-						else if (controls.UI_DOWN_P)
+						else if (controls.UI_DOWN)
 						{
 							thing.y += mov;
 						}
 					
-						if (FlxG.keys.pressed.LEFT)
+						if (controls.UI_LEFT)
 						{
 							thing.x -= mov;
 						}
-						else if (FlxG.keys.pressed.RIGHT)
+						else if (controls.UI_RIGHT)
 						{
 							thing.x += mov;
 						}
@@ -2154,20 +2154,20 @@ class UltraState extends MusicBeatSubstate
 				}
 				else
 				{
-					if (controls.UI_UP_P)
+					if (controls.UI_UP)
 					{
 						thing.y -= mov;
 					}
-					else if (controls.UI_DOWN_P)
+					else if (controls.UI_DOWN)
 					{
 						thing.y += mov;
 					}
 	
-					if (controls.UI_LEFT_P)
+					if (controls.UI_LEFT)
 					{
 						thing.x -= mov;
 					}
-					else if (controls.UI_RIGHT_P)
+					else if (controls.UI_RIGHT)
 					{
 						thing.x += mov;
 					}
