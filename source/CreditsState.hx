@@ -302,6 +302,11 @@ class CreditsState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music('creditsmenu'), 1);
 		}
 
+		#if android
+		addVirtualPad(UP_DOWN, B);
+		addPadCamera();
+		#end
+		
 		super.create();
 	}
 
@@ -319,9 +324,9 @@ class CreditsState extends MusicBeatState
 				MusicBeatState.switchState(new MainMenuState());
 			}
 
-			if (FlxG.mouse.wheel < 0)
+			if (controls.UI_UP_P)
 				newPos += 40;
-			if (FlxG.mouse.wheel > 0)
+			if (controls.UI_DOWN_P)
 				newPos -= 40;
 
 			if(newPos < 200)
