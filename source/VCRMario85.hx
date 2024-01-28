@@ -8,7 +8,6 @@ class VCRMario85 extends FlxShader // https://www.shadertoy.com/view/ldjGzV and 
   #pragma header
 
   uniform float time;
-  uniform vec3 g;
 
   // mostly stolen from https://www.shadertoy.com/view/ldXGW4
 
@@ -69,9 +68,6 @@ class VCRMario85 extends FlxShader // https://www.shadertoy.com/view/ldjGzV and 
       m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
 
       // Compute final noise value at P
-      g.x = a0.x  * x0.x  + h.x  * x0.y;
-      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-      return 130.0 * dot(m, g);
   }
 
   void main() {
