@@ -1499,11 +1499,11 @@ class WorldState extends MusicBeatSubstate
 					}
 					else
 					{
-						if (FlxG.keys.pressed.UP)
+						if (controls.UI_UP_P)
 						{
 							thing.y -= mov;
 						}
-						else if (FlxG.keys.pressed.DOWN)
+						else if (controls.UI_DOWN_P)
 						{
 							thing.y += mov;
 						}
@@ -2154,20 +2154,20 @@ class UltraState extends MusicBeatSubstate
 				}
 				else
 				{
-					if (FlxG.keys.pressed.UP)
+					if (controls.UI_UP_P)
 					{
 						thing.y -= mov;
 					}
-					else if (FlxG.keys.pressed.DOWN)
+					else if (controls.UI_DOWN_P)
 					{
 						thing.y += mov;
 					}
 	
-					if (FlxG.keys.pressed.LEFT)
+					if (controls.UI_LEFT_P)
 					{
 						thing.x -= mov;
 					}
-					else if (FlxG.keys.pressed.RIGHT)
+					else if (controls.UI_RIGHT_P)
 					{
 						thing.x += mov;
 					}
