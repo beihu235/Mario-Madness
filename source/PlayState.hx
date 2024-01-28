@@ -778,7 +778,6 @@ class PlayState extends MusicBeatState
 
 	public var introSoundsSuffix:String = '';
 
-	public var vcr:VCRMario85;
 	public var staticShader:TVStatic;
 
 	public var lavaEmitter:FlxTypedEmitter<LavaParticle>;
