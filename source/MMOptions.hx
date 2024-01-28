@@ -106,11 +106,11 @@ class MMOptions extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.UP)
+		if (controls.UI_UP_P)
 		{
 			changeSelection(-1);
 		}
-		if (FlxG.keys.justPressed.DOWN)
+		if (controls.UI_DOWN_P)
 		{
 			changeSelection(1);
 		}
@@ -262,12 +262,12 @@ class NotesSubstate extends MusicBeatSubstate
 		{
 			if (holdTime < 0.5)
 			{
-				if (FlxG.keys.justPressed.LEFT)
+				if (controls.UI_LEFT_P)
 				{
 					updateValue(-1);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
-				else if (FlxG.keys.justPressed.RIGHT)
+				else if (controls.UI_RIGHT_P)
 				{
 					updateValue(1);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -311,22 +311,22 @@ class NotesSubstate extends MusicBeatSubstate
 		}
 		else
 		{
-			if (FlxG.keys.justPressed.UP)
+			if (controls.UI_UP_P)
 			{
 				changeSelection(-1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			if (FlxG.keys.justPressed.DOWN)
+			if (controls.UI_DOWN_P)
 			{
 				changeSelection(1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			if (FlxG.keys.justPressed.LEFT)
+			if (controls.UI_LEFT_P)
 			{
 				changeType(-1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			if (FlxG.keys.justPressed.RIGHT)
+			if (controls.UI_RIGHT_P)
 			{
 				changeType(1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -987,12 +987,12 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.keys.justPressed.UP)
+		if (controls.UI_UP_P)
 		{
 			changeSelection(-1);
 		}
 
-		if (FlxG.keys.justPressed.DOWN)
+		if (controls.UI_DOWN_P)
 		{
 			changeSelection(1);
 		}
@@ -1106,10 +1106,10 @@ class PreferencesSubstate extends MusicBeatSubstate
 		}
 		else
 		{
-			if (FlxG.keys.pressed.LEFT || FlxG.keys.pressed.RIGHT)
+			if (controls.UI_LEFT || controls.UI_RIGHT)
 			{
-				var add:Int = FlxG.keys.pressed.LEFT ? -1 : 1;
-				if (holdTime > 0.5 || FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.RIGHT)
+				var add:Int = controls.UI_LEFT ? -1 : 1;
+				if (holdTime > 0.5 || controls.UI_LEFT_P || FlxG.keys.justPressed.RIGHT)
 					switch (options[curSelected])
 					{
 						case 'Framerate':
@@ -1472,11 +1472,11 @@ class MarioSubstate extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.keys.justPressed.UP)
+		if (controls.UI_UP_P)
 		{
 			changeSelection(-1);
 		}
-		if (FlxG.keys.justPressed.DOWN)
+		if (controls.UI_DOWN_P)
 		{
 			changeSelection(1);
 		}
@@ -1543,9 +1543,9 @@ class MarioSubstate extends MusicBeatSubstate
 			}
 			else
 				{
-					if (FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.RIGHT)
+					if (controls.UI_LEFT || controls.UI_RIGHT)
 					{
-						var add:Int = FlxG.keys.justPressed.LEFT ? -1 : 1;
+						var add:Int = controls.UI_LEFT ? -1 : 1;
 							switch (options[curSelected])
 							{
 								case 'Menu BG':
