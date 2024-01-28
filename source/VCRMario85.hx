@@ -68,7 +68,10 @@ class VCRMario85 extends FlxShader // https://www.shadertoy.com/view/ldjGzV and 
       m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
 
       // Compute final noise value at P
-  }
+      vec3 g = a0.x  * x0.x  + h.x  * x0.y;
+      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+      return 130.0 * dot(m, g);
+}
 
   void main() {
       float fuzzOffset = snoise(vec2(time*15.0,openfl_TextureCoordv.y*80.0))*0.0005;
