@@ -791,7 +791,6 @@ class PlayState extends MusicBeatState
 	var oldTV:Bool;
 	public var oldFX:OldTVShader;
 	public var contrastFX:BrightnessContrastShader;
-	var beatend:YCBUEndingShader;
         var angel:AngelShader;
 	var dupe:CamDupeShader;
 	var dupeTimer:Int = 0;
@@ -5635,9 +5634,8 @@ class PlayState extends MusicBeatState
 				camHUD.setFilters([new ShaderFilter(border)]);
 				
 				if(curStage == 'nesbeat'){
-					beatend = new YCBUEndingShader();
 				        angel = new AngelShader();
-					camGame.setFilters([new ShaderFilter(border), new ShaderFilter(beatend), new ShaderFilter(angel)]);
+					camGame.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
 					camEst.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
 
