@@ -210,6 +210,11 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(cutText, {alpha: 1}, 4, {ease: FlxEase.expoOut});
 		FlxTween.tween(overlay, {alpha: .4}, 4, {ease: FlxEase.expoOut});
 
+		#if android
+		addVirtualPad(NONE, A_B);
+		addPadCamera();
+		#end
+		
 		super.create();
 	}
 
@@ -253,7 +258,12 @@ class StoryMenuState extends MusicBeatSubstate
 		{
 			PlayState.isStoryMode = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			FlxG.state.closeSubState();
+			#if android
+			FlxTransitionableState.skipNextTransOut = true;
+			FlxG.resetState();
+			#else
+	                FlxG.state.closeSubState();
+			#end
 		}
 
 		MainMenuState.instance.WEHOVERING = false;
