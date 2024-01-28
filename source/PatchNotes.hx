@@ -126,6 +126,11 @@ class PatchNotes extends MusicBeatState
 		mousey = FlxG.mouse.screenY;
 		ogTexty = noteText.y;
 		wheely = noteText.y;
+	
+	        #if android
+		addVirtualPad(NONE, B);
+		addPadCamera();
+		#end
 	}
 
 	override function update(elapsed:Float)
