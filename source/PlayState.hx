@@ -7242,12 +7242,6 @@ class PlayState extends MusicBeatState
 					}
 				}
 				}
-
-				if(ClientPrefs.filtro85 && endingnes){
-					val += elapsed;
-					val /= 4;
-					beatend.update(val, elapsed);
-				}
 			}
 		
 			if(staticShader != null){
