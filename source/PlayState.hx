@@ -920,8 +920,7 @@ class PlayState extends MusicBeatState
 			for (camera in camarasTODAS)
 			{
 				camera.x = 0;
-                                camera.scaleY = 1.5;
-				camera.scaleX = 1.5;
+                                FlxG.resizeGame(512, 768);
 				camera.y = 0;
 			}
 
