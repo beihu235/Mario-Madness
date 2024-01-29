@@ -210,6 +210,11 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(cutText, {alpha: 1}, 4, {ease: FlxEase.expoOut});
 		FlxTween.tween(overlay, {alpha: .4}, 4, {ease: FlxEase.expoOut});
 		
+		#if android
+		addVirtualPad(NONE, A);
+		addPadCamera();
+		#end
+		
 		super.create();
 	}
 
@@ -232,7 +237,7 @@ class StoryMenuState extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		tottalTimer += elapsed;
-		if (FlxG.mouse.justReleased && quieto)
+		if (controls.ACCEPT && quieto)
 		{
 			selectWeek();
 		}
