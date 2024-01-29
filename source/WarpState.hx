@@ -473,20 +473,20 @@ class WarpState extends MusicBeatState
 			if (!FlxG.keys.pressed.SHIFT)
 			{
 				descText.text = 'MUNDOS:\nW1:' + ClientPrefs.worlds[0] + '\nW2:' + ClientPrefs.worlds[1] + '\nW3:' + ClientPrefs.worlds[2] + '\nW4:' + ClientPrefs.worlds[3] + '\nW5:' + ClientPrefs.worlds[4];
-				if (FlxG.keys.pressed.UP)
+				if (controls.UI_UP_R)
 				{
 					thing.y -= mov;
 				}
-				else if (FlxG.keys.pressed.DOWN)
+				else if (controls.UI_DOWN_R)
 				{
 					thing.y += mov;
 				}
 
-				if (FlxG.keys.pressed.LEFT)
+				if (controls.UI_LEFT_R)
 				{
 					thing.x -= mov;
 				}
-				else if (FlxG.keys.pressed.RIGHT)
+				else if (controls.UI_RIGHT_R)
 				{
 					thing.x += mov;
 				}
@@ -1283,7 +1283,6 @@ class WorldState extends MusicBeatSubstate
 												FlxG.sound.music.fadeIn(1, 0, 0.5);
 												camWorld.scroll.y = 0;
 												#if android
-				                                                                FlxTransitionableState.skipNextTransOut = true;
 				                                                                FlxG.resetState();
 				                                                                #else
 				                                                                close();
@@ -1479,40 +1478,40 @@ class WorldState extends MusicBeatSubstate
 	
 					if (!FlxG.keys.pressed.SHIFT)
 					{
-						if (FlxG.keys.pressed.UP)
+						if (controls.UI_UP_R)
 						{
 							thing.y -= mov;
 						}
-						else if (FlxG.keys.pressed.DOWN)
+						else if (controls.UI_DOWN_R)
 						{
 							thing.y += mov;
 						}
 					
-						if (FlxG.keys.pressed.LEFT)
+						if (controls.UI_LEFT_R)
 						{
 							thing.x -= mov;
 						}
-						else if (FlxG.keys.pressed.RIGHT)
+						else if (controls.UI_RIGHT_R)
 						{
 							thing.x += mov;
 						}
 					}
 					else
 					{
-						if (controls.UI_UP)
+						if (controls.UI_UP_P)
 						{
 							thing.y -= mov;
 						}
-						else if (controls.UI_DOWN)
+						else if (controls.UI_DOWN_P)
 						{
 							thing.y += mov;
 						}
 					
-						if (controls.UI_LEFT)
+						if (controls.UI_LEFT_P)
 						{
 							thing.x -= mov;
 						}
-						else if (controls.UI_RIGHT)
+						else if (controls.UI_RIGHT_P)
 						{
 							thing.x += mov;
 						}
@@ -2134,40 +2133,40 @@ class UltraState extends MusicBeatSubstate
 	
 				if (!FlxG.keys.pressed.SHIFT)
 				{
-					if (FlxG.keys.pressed.UP)
+					if (controls.UI_UP_R)
 					{
 						thing.y -= mov;
 					}
-					else if (FlxG.keys.pressed.DOWN)
+					else if (controls.UI_DOWN_R)
 					{
 						thing.y += mov;
 					}
 	
-					if (FlxG.keys.pressed.LEFT)
+					if (controls.UI_LEFT_R)
 					{
 						thing.x -= mov;
 					}
-					else if (FlxG.keys.pressed.RIGHT)
+					else if (controls.UI_RIGHT_R)
 					{
 						thing.x += mov;
 					}
 				}
 				else
 				{
-					if (controls.UI_UP)
+					if (controls.UI_UP_P)
 					{
 						thing.y -= mov;
 					}
-					else if (controls.UI_DOWN)
+					else if (controls.UI_DOWN_P)
 					{
 						thing.y += mov;
 					}
 	
-					if (controls.UI_LEFT)
+					if (controls.UI_LEFT_P)
 					{
 						thing.x -= mov;
 					}
-					else if (controls.UI_RIGHT)
+					else if (controls.UI_RIGHT_P)
 					{
 						thing.x += mov;
 					}
