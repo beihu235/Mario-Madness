@@ -448,11 +448,6 @@ class FreeplaySubState extends MusicBeatSubstate
 		cartel.alpha = 0;
 		tween = FlxTween.tween(descText, {alpha: 1}, 0.3, {ease: FlxEase.quadOut});
 		tween = FlxTween.tween(cartel, {alpha: 1}, 0.3, {ease: FlxEase.quadOut});
-	
-	        #if android
-		addVirtualPad(NONE, B);
-		addPadCamera();
-		#end
 	}
 
 	var quieto:Bool = false;
@@ -526,7 +521,7 @@ class FreeplaySubState extends MusicBeatSubstate
 			}
 		}
 
-		if (controls.BACK)
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 		{
 			curSelected = 0;
 			CustomFreeplayState.onMenu = false;
