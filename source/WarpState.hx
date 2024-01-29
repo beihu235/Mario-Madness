@@ -333,7 +333,7 @@ class WarpState extends MusicBeatState
 
 
 		#if android
-		addVirtualPad(LEFT_RIGHT, A_B);
+		addVirtualPad(FULL, A_B);
 		addPadCamera();
 		#end
 		
