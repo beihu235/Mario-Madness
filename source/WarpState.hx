@@ -1282,11 +1282,8 @@ class WorldState extends MusicBeatSubstate
 												FlxG.sound.playMusic(Paths.music('warpzone/0'), 0);
 												FlxG.sound.music.fadeIn(1, 0, 0.5);
 												camWorld.scroll.y = 0;
-												#if android
-				                                                                FlxG.resetState();
-				                                                                #else
+											
 				                                                                close();
-				                                                                #end
 											}else{
 											blackScreen.alpha += 0.2;
 											}
