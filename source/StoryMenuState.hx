@@ -259,7 +259,6 @@ class StoryMenuState extends MusicBeatSubstate
 			PlayState.isStoryMode = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			#if android
-			FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
 			#else
 	                FlxG.state.closeSubState();
