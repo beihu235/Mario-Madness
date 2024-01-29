@@ -14,7 +14,6 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import WarpState;
 import flixel.util.FlxTimer;
 import openfl.Lib;
 
@@ -577,7 +576,7 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.virtualmode = false;
 							if (PlayState.isWarp)
 							{
-								MusicBeatState.switchState(new WorldState());
+								MusicBeatState.switchState(new WarpState.WorldState());
 							}
 							else
 							{
