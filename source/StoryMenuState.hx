@@ -211,7 +211,7 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(overlay, {alpha: .4}, 4, {ease: FlxEase.expoOut});
 
 		#if android
-		addVirtualPad(NONE, A_B);
+		addVirtualPad(NONE, A);
 		addPadCamera();
 		#end
 		
@@ -241,9 +241,6 @@ class StoryMenuState extends MusicBeatSubstate
 		{
 			selectWeek();
 		}
-		else if(controls.ACCEPT && inCutscene){
-			finishVideo();
-		}
 
 		charsShader.update(elapsed);
 		chars.angle = 2 * Math.sin(tottalTimer/2);
@@ -254,7 +251,7 @@ class StoryMenuState extends MusicBeatSubstate
 		overlay.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 		flicker.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 
-		if (controls.BACK)
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 		{
 			PlayState.isStoryMode = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
