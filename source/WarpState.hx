@@ -591,9 +591,6 @@ class WarpState extends MusicBeatState
 							new FlxTimer().start(0.1 * i, function(tmr:FlxTimer)
 								{
 									if(i == 5){
-										#if android
-				                                                removeVirtualPad();
-				                                                #end
 										openSubState(new WorldState());
 										pibemapa.y = fnaf;
 										pibemapa.animation.play('idle');
@@ -685,9 +682,7 @@ class WarpState extends MusicBeatState
 	public function goToWorld():Void
 		{
 			FlxG.sound.music.stop();
-			#if android
-			removeVirtualPad();
-			#end
+		
 			openSubState(new WorldState());
 		}
 }
@@ -1790,11 +1785,8 @@ class WorldState extends MusicBeatSubstate
 								camWorld.scroll.x = 0;
 								curSelected = 0;
 								WarpState.worldSelected = 0;
-								#if android
-				                                FlxG.resetState();
-				                                #else
+								
 				                                close();
-				                                #end
 							}else{
 							blackScreen.alpha += 0.2;
 							}
@@ -2405,11 +2397,6 @@ class VirtualState extends MusicBeatSubstate
 		warning.alpha = 0;
 		//warning.x -= 180;
 		add(warning);
-
-		#if android
-		addVirtualPad(NONE, A);
-		addPadCamera();
-		#end
 		
 		new FlxTimer().start(40, function(tmr:FlxTimer)
 			{
@@ -2429,7 +2416,7 @@ class VirtualState extends MusicBeatSubstate
 	}
 
 	override function update(elapsed:Float) {
-		if (controls.ACCEPT && !selected){
+		if (FlxG.mouse.justReleased && !selected){
 			selected = true;
 
 			for (i in 0...6)
