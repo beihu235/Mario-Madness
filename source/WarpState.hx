@@ -100,23 +100,6 @@ class WarpState extends MusicBeatState
 		FlxG.mouse.visible = false;
 		FlxG.mouse.load(TitleState.mouse.pixels, 2);
 
-		if(PlayState.curStage == 'piracy'){
-			PlayState.curStage = '';
-			Lib.current.scaleX = 1;
-			Lib.current.scaleY = 1;
-			if(PlayState.ogwinX == 0){
-				PlayState.ogwinX = Lib.application.window.x;
-				PlayState.ogwinY = Lib.application.window.y;
-				}
-			var win = Lib.application.window;
-			win.move(PlayState.ogwinX, PlayState.ogwinY);
-			FlxG.resizeWindow(1280, 720);
-			FlxG.resizeGame(1280, 720);
-			Lib.current.x = 0;
-			Lib.current.y = 0;
-			win.resizable = true;
-		}
-
 		var backbg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(blackScreen);
 
