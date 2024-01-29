@@ -431,11 +431,6 @@ class MainMenuState extends MusicBeatState {
 		}
 		bgAm = amount;
 
-		#if android
-		addVirtualPad(NONE, A);
-		addPadCamera();
-		#end
-
                 super.create();
 		FlxG.mouse.visible = true;
 	}
@@ -609,7 +604,7 @@ class MainMenuState extends MusicBeatState {
 		}
 
 		Mouse.cursor = WEHOVERING ? BUTTON : ARROW;
-		if (controls.ACCEPT && smOpen) {
+		if (FlxG.mouse.justReleased && smOpen) {
 			smOpen = false;
 			FlxG.sound.play(Paths.sound('accept'));
 			if(showMsg == 1){
@@ -728,9 +723,6 @@ class MainMenuState extends MusicBeatState {
 				case 1:
 					switch (choice) {
 						case "MainGame":
-						#if android
-				                removeVirtualPad();
-				                #end
                                                 new FlxTimer().start(0.4, function(tmr:FlxTimer) {FlxG.state.persistentDraw = true; openSubState(new StoryMenuState());});
 						case "WarpZone":
 							new FlxTimer().start(0.4, function(tmr:FlxTimer)
@@ -739,9 +731,6 @@ class MainMenuState extends MusicBeatState {
 							});
 							
 						case "Freeplay":
-							#if android
-				                        removeVirtualPad();
-				                        #end
                                                         new FlxTimer().start(0.4, function(tmr:FlxTimer) {FlxG.state.persistentDraw = false; openSubState(new CustomFreeplayState());});
 					}
 				case 2:
