@@ -322,9 +322,7 @@ class CustomFreeplayState extends MusicBeatSubstate
 					['All Stars Act 1 (Original)', 'all-stars-old', '38']
 				];				
 		}
-		#if android
-		removeVirtualPad();
-		#end
+		
                 openSubState(new FreeplaySubState());
 	}
 }
