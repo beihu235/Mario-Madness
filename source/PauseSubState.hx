@@ -576,7 +576,7 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.virtualmode = false;
 							if (PlayState.isWarp)
 							{
-								MusicBeatState.switchState(new WarpState.WorldState());
+								MusicBeatState.switchState(new WarpState().WorldState);
 							}
 							else
 							{
