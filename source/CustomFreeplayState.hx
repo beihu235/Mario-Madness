@@ -6,7 +6,6 @@ import Discord.DiscordClient;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -136,11 +135,6 @@ class CustomFreeplayState extends MusicBeatSubstate
 		trace(MainMenuState.instance.estatica.alpha);
 		//FlxTween.color(MainMenuState.instance.estatica, .8, MainMenuState.instance.estatica.color, 0xFF5E1515);
 
-                #if android
-		addVirtualPad(NONE, B);
-		addPadCamera();
-		#end
-		
 		FlxG.state.persistentDraw = true;
 	}
 
@@ -193,15 +187,10 @@ class CustomFreeplayState extends MusicBeatSubstate
 		// 	changeSelection(1);
 		// }
 
-		if (controls.BACK)
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			#if android
-			FlxTransitionableState.skipNextTransOut = true;
-			FlxG.resetState();
-			#else
 			FlxG.state.closeSubState();
-			#end
 		}
 
 		if (controls.ACCEPT)
@@ -322,8 +311,7 @@ class CustomFreeplayState extends MusicBeatSubstate
 					['All Stars Act 1 (Original)', 'all-stars-old', '38']
 				];				
 		}
-		
-                openSubState(new FreeplaySubState());
+		openSubState(new FreeplaySubState());
 	}
 }
 
@@ -521,15 +509,11 @@ class FreeplaySubState extends MusicBeatSubstate
 			}
 		}
 
-		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end && !quieto)
 		{
 			curSelected = 0;
 			CustomFreeplayState.onMenu = false;
-			#if android
-			FlxG.resetState();
-			#else
 			close();
-			#end
 		}
 		if (nextAccept > 0)
 		{
