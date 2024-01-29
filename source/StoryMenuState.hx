@@ -209,11 +209,6 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(titleText, {alpha: 1}, 4, {ease: FlxEase.expoOut});
 		FlxTween.tween(cutText, {alpha: 1}, 4, {ease: FlxEase.expoOut});
 		FlxTween.tween(overlay, {alpha: .4}, 4, {ease: FlxEase.expoOut});
-
-		#if android
-		addVirtualPad(NONE, A);
-		addPadCamera();
-		#end
 		
 		super.create();
 	}
