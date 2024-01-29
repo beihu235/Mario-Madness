@@ -394,9 +394,6 @@ class TitleState extends MusicBeatState {
 								windowPos = CoolUtil.getCenterWindowPoint();
 								startTime = Sys.time();
 								
-
-								FlxG.camera.visible = false;
-								camHUD.visible = false;
 							}
 						});
 					}
