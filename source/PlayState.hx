@@ -920,7 +920,7 @@ class PlayState extends MusicBeatState
 			for (camera in camarasTODAS)
 			{
 				camera.x = 0;
-
+                                camera.scale = 1.5;
 				camera.y = 0;
 			}
 
@@ -15735,7 +15735,7 @@ class PlayState extends MusicBeatState
 			{
 				Lib.application.window.fullscreen = true;
 				Lib.application.window.resize(1280, 720);
-				Lib.application.window.move(PlayState.ogwinX, PlayState.ogwinY);
+				Lib.application.window.resizable = true;
 			}
 			if (PlayState.curStage == 'somari')
 			{
