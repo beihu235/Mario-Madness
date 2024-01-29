@@ -664,7 +664,7 @@ class WarpState extends MusicBeatState
 		}
 }
 
-class WorldState extends MusicBeatState
+class WorldState1 extends MusicBeatState
 {
 
 	var tween:FlxTween;
