@@ -526,7 +526,7 @@ class FreeplaySubState extends MusicBeatSubstate
 			}
 		}
 
-		if (controls.BACK && !quieto)
+		if (controls.BACK)
 		{
 			curSelected = 0;
 			CustomFreeplayState.onMenu = false;
