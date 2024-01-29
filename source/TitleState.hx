@@ -394,6 +394,20 @@ class TitleState extends MusicBeatState {
 								windowPos = CoolUtil.getCenterWindowPoint();
 								startTime = Sys.time();
 								
+							        windowTwn = FlxTween.tween(windowRes, {x: 1280, y: 720}, 0.3 * 4, {ease: FlxEase.circInOut, onUpdate: (_) -> {
+									FlxG.resizeWindow(Std.int(windowRes.x), Std.int(windowRes.y));
+									CoolUtil.centerWindowOnPoint(windowPos);
+									if ((Sys.time() - startTime) > 1.35) {
+										windowTwn.cancel();
+										completeWindowTwn();
+									}
+								}, onComplete: function(twn:FlxTween)
+									{
+										completeWindowTwn();
+									}
+								});
+					                        FlxG.camera.visible = false;
+								camHUD.visible = false;
 							}
 						});
 					}
@@ -406,16 +420,6 @@ class TitleState extends MusicBeatState {
 
 	function completeWindowTwn(){
 		FlxG.updateFramerate = ClientPrefs.framerate;
-		BaseScaleMode.ogSize = FlxPoint.get(1280, 720); // fuck you haxeflixel
-
-		FlxG.scaleMode = new flixel.system.scaleModes.RatioScaleMode();
-
-		FlxG.resizeWindow(1280, 720);
-		FlxG.resizeGame(1280, 720);
-		CoolUtil.centerWindowOnPoint(windowPos);
-		
-		windowPos.put(); windowPos.put(); baseCamPos.put();
-
 		FlxG.mouse.visible = true;
 		MusicBeatState.switchState(new MainMenuState());
 	};
