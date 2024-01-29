@@ -920,7 +920,8 @@ class PlayState extends MusicBeatState
 			for (camera in camarasTODAS)
 			{
 				camera.x = 0;
-                                camera.scale = 1.5;
+                                camera.scaleY = 1.5;
+				camera.scaleX = 1.5;
 				camera.y = 0;
 			}
 
