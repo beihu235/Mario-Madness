@@ -1794,7 +1794,6 @@ class WorldState extends MusicBeatSubstate
 								curSelected = 0;
 								WarpState.worldSelected = 0;
 								#if android
-				                                FlxTransitionableState.skipNextTransOut = true;
 				                                FlxG.resetState();
 				                                #else
 				                                close();
@@ -2410,6 +2409,11 @@ class VirtualState extends MusicBeatSubstate
 		//warning.x -= 180;
 		add(warning);
 
+		#if android
+		addVirtualPad(NONE, A);
+		addPadCamera();
+		#end
+		
 		new FlxTimer().start(40, function(tmr:FlxTimer)
 			{
 				FlxG.sound.play(Paths.sound('owCuts/virtualmomo'), 0.4);
