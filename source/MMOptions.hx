@@ -1753,7 +1753,7 @@ class DeleteSubstate extends MusicBeatSubstate
 				        #end
 				}
 			
-			if(controls.ACCEPT && delPhase <= 3 && timer == 0 && cat.angle == 0){
+			if(FlxG.mouse.justReleased && delPhase <= 3 && timer == 0 && cat.angle == 0){
 				switch(delPhase){
 					case 0:
 						timer = 1;
