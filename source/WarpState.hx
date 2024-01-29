@@ -568,7 +568,7 @@ class WarpState extends MusicBeatState
 							new FlxTimer().start(0.1 * i, function(tmr:FlxTimer)
 								{
 									if(i == 5){
-										openSubState(new WorldState());
+										LoadingState.loadAndSwitchState(new WorldState());
 										pibemapa.y = fnaf;
 										pibemapa.animation.play('idle');
 										quieto = true;
@@ -656,7 +656,7 @@ class WarpState extends MusicBeatState
 	public function goToWorld():Void
 		{
 			FlxG.sound.music.stop();
-			openSubState(new WorldState());
+			LoadingState.loadAndSwitchState(new WorldState());
 		}
 }
 
@@ -1245,7 +1245,7 @@ class WorldState extends MusicBeatState
 												FlxG.sound.playMusic(Paths.music('warpzone/0'), 0);
 												FlxG.sound.music.fadeIn(1, 0, 0.5);
 												camWorld.scroll.y = 0;
-												close();
+												LoadingState.loadAndSwitchState(new WarpState());
 											}else{
 											blackScreen.alpha += 0.2;
 											}
@@ -1749,7 +1749,7 @@ class WorldState extends MusicBeatState
 								camWorld.scroll.x = 0;
 								curSelected = 0;
 								WarpState.worldSelected = 0;
-								close();
+								LoadingState.loadAndSwitchState(new WarpState());
 							}else{
 							blackScreen.alpha += 0.2;
 							}
