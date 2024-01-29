@@ -320,6 +320,10 @@ class WarpState extends MusicBeatState
 		//	} catch (e) {
 		//	trace(e.message);
 		//	}
+	        #if android
+		addVirtualPad(LEFT_RIGHT, A_B);
+		addPadCamera();
+		#end
 	}
 
 	var datos:String = '';
@@ -357,7 +361,7 @@ class WarpState extends MusicBeatState
 						goodbye();
 					}
 
-				if (FlxG.keys.justPressed.LEFT)
+				if ()
 				{
 					quieto = false;
 					caminar(canciones[curSelected][3]);
