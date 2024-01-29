@@ -1260,7 +1260,6 @@ class WorldState extends MusicBeatSubstate
 												FlxG.sound.playMusic(Paths.music('warpzone/0'), 0);
 												FlxG.sound.music.fadeIn(1, 0, 0.5);
 												camWorld.scroll.y = 0;
-											
 				                                                                close();
 											}else{
 											blackScreen.alpha += 0.2;
@@ -1473,20 +1472,20 @@ class WorldState extends MusicBeatSubstate
 					}
 					else
 					{
-						if (controls.UI_UP_P)
+						if (controls.UI_UP)
 						{
 							thing.y -= mov;
 						}
-						else if (controls.UI_DOWN_P)
+						else if (controls.UI_DOWN)
 						{
 							thing.y += mov;
 						}
 					
-						if (controls.UI_LEFT_P)
+						if (controls.UI_LEFT)
 						{
 							thing.x -= mov;
 						}
-						else if (controls.UI_RIGHT_P)
+						else if (controls.UI_RIGHT)
 						{
 							thing.x += mov;
 						}
@@ -2124,20 +2123,20 @@ class UltraState extends MusicBeatSubstate
 				}
 				else
 				{
-					if (controls.UI_UP_P)
+					if (controls.UI_UP)
 					{
 						thing.y -= mov;
 					}
-					else if (controls.UI_DOWN_P)
+					else if (controls.UI_DOWN)
 					{
 						thing.y += mov;
 					}
 	
-					if (controls.UI_LEFT_P)
+					if (controls.UI_LEFT)
 					{
 						thing.x -= mov;
 					}
-					else if (controls.UI_RIGHT_P)
+					else if (controls.UI_RIGHT)
 					{
 						thing.x += mov;
 					}
