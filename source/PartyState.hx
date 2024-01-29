@@ -126,19 +126,7 @@ class PartyState extends MusicBeatState
 			botCam.y = topCam.y;
 			topCam.y = swapX;
 		}
-
 		
-		Lib.current.scaleX = 2.5;
-		Lib.current.scaleY = 2.5;
-		PlayState.ogwinX = Lib.application.window.x;
-		PlayState.ogwinY = Lib.application.window.y;
-		var win = Lib.application.window;
-		win.move(win.x + Std.int((win.width - 512) / 2), win.y + Std.int((win.height - 768) / 2));
-		FlxG.resizeWindow(512, 768);
-		FlxG.resizeGame(512, 768);
-		Lib.current.x = 0;
-		Lib.current.y = 0;
-		win.resizable = false;
 		Main.fpsVar.visible = false;
 		FlxG.sound.volume = 1;
 
