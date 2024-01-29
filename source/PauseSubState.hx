@@ -8,6 +8,7 @@ import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import WarpState.WorldState
 import flixel.input.keyboard.FlxKey;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
@@ -576,7 +577,7 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.virtualmode = false;
 							if (PlayState.isWarp)
 							{
-								MusicBeatState.switchState(new WarpState().WorldState);
+								MusicBeatState.switchState(new WorldState());
 							}
 							else
 							{
