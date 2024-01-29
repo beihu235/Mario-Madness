@@ -1732,11 +1732,6 @@ class DeleteSubstate extends MusicBeatSubstate
 			rotButton.x += 400;
 			rotButton.visible = false;
 			add(rotButton);
-
-		        #if android
-		        addVirtualPad(NONE, A_B);
-			addPadCamera();
-		        #end
 		}
 
 	override function update(elapsed:Float)
@@ -1746,7 +1741,7 @@ class DeleteSubstate extends MusicBeatSubstate
 			}else{
 				timer = 0;
 			}
-			if (controls.BACK && delPhase != 4)
+			if (controls.BACK #if android || FlxG.android.justReleased.BACK #end && delPhase != 4)
 				{
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					FlxG.mouse.visible = false;
