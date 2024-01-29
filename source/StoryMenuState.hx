@@ -237,7 +237,7 @@ class StoryMenuState extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		tottalTimer += elapsed;
-		if (controls.ACCEPT)
+		if (controls.ACCEPT && quieto)
 		{
 			selectWeek();
 		}
