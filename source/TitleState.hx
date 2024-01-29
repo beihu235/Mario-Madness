@@ -181,7 +181,7 @@ class TitleState extends MusicBeatState {
 		bottomGroup.cameras = [FlxG.camera];
 		add(bottomGroup);
 
-		floor = new FlxSprite(0, 0).loadGraphic(Paths.image('title/floor'));
+		floor = new FlxSprite(250, 0).loadGraphic(Paths.image('title/floor'));
 		floor.antialiasing = ClientPrefs.globalAntialiasing;
 		floor.scale.set(0.95, 0.95);
 		floor.updateHitbox();
@@ -189,7 +189,7 @@ class TitleState extends MusicBeatState {
 		bottomGroup.add(floor);
 
 		for (i in 0...2) {
-			var hand:FlxSprite = new FlxSprite(96 + (601 * i), 125);
+			var hand:FlxSprite = new FlxSprite(346 + (601 * i), 125);
 			hand.antialiasing = ClientPrefs.globalAntialiasing;
 			hand.frames = Paths.getSparrowAtlas("title/titleAssets");
 			hand.animation.addByPrefix("idle", "Spookihand", 24, true);
@@ -206,7 +206,7 @@ class TitleState extends MusicBeatState {
 			hands.push(hand);
 		}
 
-		bf = new FlxSprite(303, 312);
+		bf = new FlxSprite(553, 312);
 		bf.antialiasing = ClientPrefs.globalAntialiasing;
 		bf.frames = Paths.getSparrowAtlas("title/titleAssets");
 		bf.animation.addByPrefix("idle", "BF", 24, false);
@@ -215,7 +215,7 @@ class TitleState extends MusicBeatState {
 		bf.updateHitbox();
 		bottomGroup.add(bf);
 
-		gf = new FlxSprite(705, 230);
+		gf = new FlxSprite(955, 230);
 		gf.antialiasing = ClientPrefs.globalAntialiasing;
 		gf.frames = Paths.getSparrowAtlas("title/titleAssets");
 		gf.animation.addByPrefix("idle", "GF", 24, false);
