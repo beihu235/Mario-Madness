@@ -72,7 +72,7 @@ class Main extends Sprite {
 		#if !debug
 		initialState = TitleState;
 		#end
-		
+		FlxTransitionableState.skipNextTransOut = true;
 		fpsVar = new FPS(10, 4, 0xFFFFFF);
                 
 		if (fpsVar != null) {
