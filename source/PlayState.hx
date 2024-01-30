@@ -149,7 +149,7 @@ class PlayState extends MusicBeatState
 	public static var curStage:String = '';
 	public static var isPixelStage:Bool = false;
 
-	var qqqeb:Bool = false;
+	public static var qqqeb:Bool = false;
 	var tvEffect:Bool = false;
 	var noCount:Bool = false;
 	var noHUD:Bool = false;
