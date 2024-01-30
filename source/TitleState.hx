@@ -185,7 +185,6 @@ class TitleState extends MusicBeatState {
 		floor.antialiasing = ClientPrefs.globalAntialiasing;
 		floor.scale.set(0.95, 0.95);
 		floor.updateHitbox();
-		floor.setPosition(-40.0567375886525, 360); // bros being specific
 		bottomGroup.add(floor);
 
 		for (i in 0...2) {
