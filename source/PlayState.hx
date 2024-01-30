@@ -156,7 +156,7 @@ class PlayState extends MusicBeatState
 
 	public static var SONG:SwagSong = null;
 	public static var isStoryMode:Bool = false;
-	
+	public static var isWarp:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = ['Its a me', 'Starman Slaughter'];
 	public static var storyDifficulty:Int = 1;
