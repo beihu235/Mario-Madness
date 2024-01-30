@@ -884,17 +884,13 @@ class PlayState extends MusicBeatState
 
 		if (curStage == 'piracy')
 		{
-			if(ogwinX == 0){
-				ogwinX = Lib.application.window.x;
-				ogwinY = Lib.application.window.y;
-			}
 			var win = Lib.application.window; // just to make this following line shorter
 
 			var camarasTODAS:Array<FlxCamera> = [camHUD, camEst, camOther];
 
 			for (camera in camarasTODAS)
 			{
-				camera.x = 0;
+				camera.x = 450;
 
 				camera.y = 0;
 			}
@@ -920,7 +916,7 @@ class PlayState extends MusicBeatState
 
 			for (camera in camarasTODAS)
 			{
-				camera.x = 450;
+				camera.x = 0;
                                 
 				camera.y = 0;
 			}
