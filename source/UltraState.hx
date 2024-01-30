@@ -244,6 +244,10 @@ class UltraState extends MusicBeatSubstate
 		//quieto = true;
 
 		//camWorld.zoom = 0.3333;
+	        #if android
+		addVirtualPad(UP_DOWN, A);
+		addPadCamera();
+		#end
 	}
 	var mov:Float = 1;
 	var datos:String = '';
@@ -283,7 +287,7 @@ class UltraState extends MusicBeatSubstate
 							gotoSong();
 						}
 
-					if (FlxG.keys.justPressed.UP && cutScenes == 0)
+					if (controls.UI_UP_P && cutScenes == 0)
 						{
 							quieto = false;
 							caminar();
