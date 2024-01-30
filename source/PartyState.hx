@@ -116,7 +116,7 @@ class PartyState extends MusicBeatState
 		bgColor = 0xFF000000;
 
 		topCam = new FlxCamera(0, 0, 256, 192, 2);
-		botCam = new FlxCamera(0, 460, 256, 192, 2);
+		botCam = new FlxCamera(0, 430, 256, 192, 2);
 		
 		FlxG.cameras.add(topCam);
 		FlxG.cameras.add(botCam);
