@@ -613,7 +613,7 @@ class WorldState extends MusicBeatState
 												FlxG.sound.playMusic(Paths.music('warpzone/0'), 0);
 												FlxG.sound.music.fadeIn(1, 0, 0.5);
 												camWorld.scroll.y = 0;
-												close();
+												LoadingState.loadAndSwitchState(new WarpState());
 											}else{
 											blackScreen.alpha += 0.2;
 											}
@@ -1117,7 +1117,7 @@ class WorldState extends MusicBeatState
 								camWorld.scroll.x = 0;
 								curSelected = 0;
 								WarpState.worldSelected = 0;
-								close();
+								LoadingState.loadAndSwitchState(new WarpState());
 							}else{
 							blackScreen.alpha += 0.2;
 							}
