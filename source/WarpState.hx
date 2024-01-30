@@ -310,7 +310,6 @@ class WarpState extends MusicBeatState
 		vcr = new CRTShader();
 		FlxG.camera.setFilters([new ShaderFilter(vcr)]);
 
-		if(PlayState.isWarp && !startCut) goToWorld();
 		if(pipeCut) openSubState(new PipeState());
 
 
