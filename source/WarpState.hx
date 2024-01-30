@@ -567,7 +567,7 @@ class WarpState extends MusicBeatState
 							new FlxTimer().start(0.1 * i, function(tmr:FlxTimer)
 								{
 									if(i == 5){
-										openSubState(new WorldState());
+										LoadingState.loadAndSwitchState(new WorldState());
 										pibemapa.y = fnaf;
 										pibemapa.animation.play('idle');
 										quieto = true;
