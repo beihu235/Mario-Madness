@@ -4,7 +4,6 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxDestroyUtil; 
 import openfl.display.BitmapData;
-import PlayState;
 import openfl.display.Shape;
 import android.flixel.FlxButton;
 
@@ -29,7 +28,7 @@ class FlxNewHitbox extends FlxSpriteGroup
 	{
 		super();
 
-                if(!qqqeb && !qqqeb1)
+                if(!PlayState.qqqeb && !PlayState.qqqeb1)
 		{
 		add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0xFF00FF));
 		add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0x00FFFF));
@@ -38,7 +37,7 @@ class FlxNewHitbox extends FlxSpriteGroup
 		
 		} else {
 		
-		if(qqqeb)
+		if(PlayState.qqqeb)
 		{
 		add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 0.8), 0xFF00FF));
 		add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 0.8), 0x00FFFF));
@@ -48,7 +47,7 @@ class FlxNewHitbox extends FlxSpriteGroup
 		}
 		}
 			
-		if(qqqeb1)
+		if(PlayState.qqqeb1)
 		{
 		add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 5), Std.int(FlxG.height * 1), 0x00FFFF));
 		add(buttonDown = createHint(FlxG.width / 5 * 1, 0, Std.int(FlxG.width / 5), Std.int(FlxG.height * 1), 0xFF0000));
