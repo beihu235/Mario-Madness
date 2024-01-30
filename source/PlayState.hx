@@ -884,8 +884,6 @@ class PlayState extends MusicBeatState
 
 		if (curStage == 'piracy')
 		{
-			var win = Lib.application.window; // just to make this following line shorter
-
 			var camarasTODAS:Array<FlxCamera> = [camHUD, camEst, camOther];
 
 			for (camera in camarasTODAS)
@@ -15757,9 +15755,6 @@ class PlayState extends MusicBeatState
 			}
 
 			FlxG.mouse.load(TitleState.mouse.pixels, 2);
-
-			Lib.current.scaleX = 1;
-			Lib.current.scaleY = 1;
 	}
 
 	public function cancelFadeTween()
