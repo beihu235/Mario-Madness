@@ -55,7 +55,7 @@ import VideoSprite;
 import lime.app.Application;
 import lime.utils.Assets;
 import modchart.*;
-
+import openfl.Lib;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
@@ -15755,6 +15755,8 @@ class PlayState extends MusicBeatState
 			}
 
 			FlxG.mouse.load(TitleState.mouse.pixels, 2);
+		        Lib.current.scaleX = 1;
+			Lib.current.scaleY = 1;
 	}
 
 	public function cancelFadeTween()
