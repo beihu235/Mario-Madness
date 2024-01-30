@@ -1363,7 +1363,8 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.characterName = 'bf_PDdeath';
 				addCharacterToList('bf_PDdeath', 0);
 				noCount = true;
-				noHUD = true;
+				qqqeb = true;
+	                        noHUD = true;
 				tvEffect = true;
 
 				if (PlayState.SONG.song == 'Powerdown Old')
@@ -3273,7 +3274,8 @@ class PlayState extends MusicBeatState
 				// GameOverSubstate.loopSoundName = '';
 				GameOverSubstate.deathSoundName = 'turmoil_death1';
 				gfGroup.visible = false;
-				noCount = true;
+				qqqeb = true;
+                                noCount = true;
 				noHUD = true;
 
 				var fartree:BGSprite = new BGSprite('mario/Turmoil/ThirdBGTrees', -1300, -750, 0.5, 0.5);
@@ -3322,7 +3324,8 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.hasVA = true;
 				GameOverSubstate.vaCount = 4;
 
-				noCount = true;
+				qqqeb = true;
+                                noCount = true;
 				noHUD = true;
 				gfGroup.visible = false;
 
