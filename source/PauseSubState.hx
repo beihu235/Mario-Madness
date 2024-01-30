@@ -539,17 +539,6 @@ class PauseSubState extends MusicBeatSubstate
 						MusicBeatState.resetState();
 						FlxG.sound.music.volume = 0;
 
-						if (PlayState.curStage == 'virtual')
-						{
-							Lib.application.window.fullscreen = true;
-							Lib.application.window.maximized = false;
-							Lib.application.window.resize(restsizeX, restsizeY);
-							Lib.application.window.move(restX, restY);
-							#if windows
-							CppAPI.setWallpaper('old');
-							#end
-						}
-
 						if (PlayState.getspeed != 0)
 						{
 							PlayState.SONG.speed = PlayState.getspeed;
