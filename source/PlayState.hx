@@ -149,6 +149,7 @@ class PlayState extends MusicBeatState
 	public static var curStage:String = '';
 	public static var isPixelStage:Bool = false;
 
+	public static var qqqeb1:Bool = false;
 	public static var qqqeb:Bool = false;
 	var tvEffect:Bool = false;
 	var noCount:Bool = false;
@@ -4129,14 +4130,15 @@ class PlayState extends MusicBeatState
 				noCount = true;
 				BF_CAM_EXTEND = 0;
 				CoolUtil.precacheSound('lightOn');
-				gfGroup.visible = false;
+				qqqeb1 = true;
+                                gfGroup.visible = false;
 				boyfriendGroup.scrollFactor.set(0.1, 0.1);
 
 				Main.fpsVar.visible = false;
 
 				var scrollcoords:Float = 0;
 				if(!hasDownScroll){
-					camHUD.y = 280;
+					camHUD.y = 150;
 					boyfriendGroup.y = 280;
 					dadGroup.y = 470;
 					scrollcoords = 362;
