@@ -14445,7 +14445,7 @@ class PlayState extends MusicBeatState
 						});
 					}
 					else
-						MusicBeatState.switchState(new WorldState());
+						MusicBeatState.switchState(new WarpState());
 					// if ()
 					if (!usedPractice)
 					{
@@ -14603,7 +14603,7 @@ class PlayState extends MusicBeatState
 					{
 						CustomFadeTransition.nextCamera = null;
 					}
-					MusicBeatState.switchState(new WarpState());
+					MusicBeatState.switchState(new WorldState());
 					}
 				}
 				usedPractice = false;
