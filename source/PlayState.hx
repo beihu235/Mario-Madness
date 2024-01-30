@@ -14445,7 +14445,7 @@ class PlayState extends MusicBeatState
 						});
 					}
 					else
-						MusicBeatState.switchState(new WarpState());
+						MusicBeatState.switchState(new WorldState());
 					// if ()
 					if (!usedPractice)
 					{
