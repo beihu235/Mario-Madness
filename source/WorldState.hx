@@ -529,7 +529,7 @@ class WorldState extends MusicBeatState
 					}
 
 					if(pibeback.animation.curAnim.name != 'enter' && quieto){
-					if (FlxG.keys.pressed.ESCAPE  && curSelected != 0){
+					if (FlxG.keys.pressed.ESCAPE #if android || _virtualpad.buttonB.justPressed #end && curSelected != 0){
 							if(pipeTimer == 0){
 								
 								pibeback.animation.play('intro');
@@ -745,6 +745,9 @@ class WorldState extends MusicBeatState
 									FlxG.switchState(new PartyState());
 								}else if(thesong == "paranoia"){
 									FlxG.camera.visible = true;
+									#if android
+				                                        removeVirtualPad();
+				                                        #end
 									openSubState(new VirtualState());
 								}else{
 									LoadingState.loadAndSwitchState(new PlayState());
