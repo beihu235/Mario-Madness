@@ -55,7 +55,7 @@ import VideoSprite;
 import lime.app.Application;
 import lime.utils.Assets;
 import modchart.*;
-import openfl.Lib;
+
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
