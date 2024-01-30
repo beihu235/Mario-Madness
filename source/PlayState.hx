@@ -4138,7 +4138,6 @@ class PlayState extends MusicBeatState
 
 				var scrollcoords:Float = 0;
 				if(!hasDownScroll){
-					camHUD.y = -480;
 					boyfriendGroup.y = 280;
 					dadGroup.y = 470;
 					scrollcoords = 362;
