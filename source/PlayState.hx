@@ -890,7 +890,7 @@ class PlayState extends MusicBeatState
 
 			for (camera in camarasTODAS)
 			{
-				camera.x = 450;
+				camera.x = 0;
 
 				camera.y = 0;
 			}
@@ -4138,6 +4138,7 @@ class PlayState extends MusicBeatState
 
 				var scrollcoords:Float = 0;
 				if(!hasDownScroll){
+					camHUD.y = 280;
 					boyfriendGroup.y = 280;
 					dadGroup.y = 470;
 					scrollcoords = 362;
@@ -15727,14 +15728,10 @@ class PlayState extends MusicBeatState
 			if (Lib.application.window.width == 800 && Lib.application.window.height == 600)
 			{
 				Lib.application.window.fullscreen = true;
-				Lib.application.window.move(Lib.application.window.x - 240, Lib.application.window.y - 60);
-				Lib.application.window.resize(1280, 720);
 			}
 			else if (PlayState.curStage == 'piracy')
 			{
 				Lib.application.window.fullscreen = true;
-				Lib.application.window.resize(1280, 720);
-				Lib.application.window.resizable = true;
 			}
 			if (PlayState.curStage == 'somari')
 			{
