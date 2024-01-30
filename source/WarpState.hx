@@ -593,7 +593,10 @@ class WarpState extends MusicBeatState
 						if(i == 5){
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 								{
-							openSubState(new UltraState());
+							        #if android
+				                                removeVirtualPad();
+				                                #end
+									openSubState(new UltraState());
 								});
 							pibemapa.animation.play('idle');
 							quieto = true;
