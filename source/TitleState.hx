@@ -181,7 +181,7 @@ class TitleState extends MusicBeatState {
 		bottomGroup.cameras = [FlxG.camera];
 		add(bottomGroup);
 
-		floor = new FlxSprite(-500, 350).loadGraphic(Paths.image('title/floor'));
+		floor = new FlxSprite(200, 350).loadGraphic(Paths.image('title/floor'));
 		floor.antialiasing = ClientPrefs.globalAntialiasing;
 		floor.scale.set(0.95, 0.95);
 		floor.updateHitbox();
