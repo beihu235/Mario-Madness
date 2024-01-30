@@ -7406,7 +7406,7 @@ class PlayState extends MusicBeatState
 				bftors.visible = bfext.visible = !(bftorsmiss.visible = bfextmiss.visible = boyfriend.animation.curAnim.name.endsWith('miss'));
 				if(warioDead){
 					//apparition game over confirm/exit
-					if(controls.ACCEPT){
+					if(FlxG.mouse.justReleased){
 						FlxG.sound.music.volume = 0;
 						FlxG.sound.play(Paths.music(GameOverSubstate.endSoundName));
 						new FlxTimer().start(2, function(gef:FlxTimer)
@@ -7422,7 +7422,7 @@ class PlayState extends MusicBeatState
 									}}));
 							});
 					}
-					if(controls.BACK){
+					if(controls.BACK ){
 						ClientPrefs.saveSettings();
 						FlxG.sound.music.stop();
 						deathCounter = 0;
