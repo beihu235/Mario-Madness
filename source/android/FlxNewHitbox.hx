@@ -28,7 +28,7 @@ class FlxNewHitbox extends FlxSpriteGroup
 	{
 		super();
 
-                if(!PlayState.qqqeb && !PlayState.qqqeb1)
+                if(!PlayState.qqqeb)
 		{
 		add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0xFF00FF));
 		add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0x00FFFF));
