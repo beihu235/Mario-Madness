@@ -4125,7 +4125,7 @@ class PlayState extends MusicBeatState
 						vid.destroy();
 					}
 
-			case 'piracy':
+			case 'piracy1':
 				//hasDownScroll = true;
 				noCount = true;
 				BF_CAM_EXTEND = 0;
@@ -4138,7 +4138,7 @@ class PlayState extends MusicBeatState
 
 				var scrollcoords:Float = 0;
 				if(!hasDownScroll){
-					camHUD.y = 150;
+					camHUD.y = 100;
 					boyfriendGroup.y = 280;
 					dadGroup.y = 470;
 					scrollcoords = 362;
