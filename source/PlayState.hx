@@ -4125,7 +4125,7 @@ class PlayState extends MusicBeatState
 						vid.destroy();
 					}
 
-			case 'piracy1':
+			case 'piracy':
 				//hasDownScroll = true;
 				noCount = true;
 				BF_CAM_EXTEND = 0;
