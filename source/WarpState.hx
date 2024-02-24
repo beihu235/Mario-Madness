@@ -96,6 +96,7 @@ class WarpState extends MusicBeatState
 		DiscordClient.changePresence("In the Overworld", null);
 		Lib.application.window.title = "Friday Night Funkin': Mario's Madness";
 		#end
+           
 		FlxG.mouse.visible = false;
 		FlxG.mouse.load(TitleState.mouse.pixels, 2);
 

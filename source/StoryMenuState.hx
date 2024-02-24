@@ -19,8 +19,10 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.misc.NumTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import VideoHandler;
-import VideoSprite;
+#if VIDEOS_ALLOWED
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
+#end
 import lime.net.curl.CURLCode;
 import openfl.filters.ShaderFilter;
 import sys.FileSystem;
@@ -251,7 +253,7 @@ class StoryMenuState extends MusicBeatSubstate
 		overlay.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 		flicker.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 
-		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
+		if (controls.BACK #if android || (FlxG.android.justReleased.BACK && quieto) #end)
 		{
 			PlayState.isStoryMode = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -414,7 +416,8 @@ class StoryMenuState extends MusicBeatSubstate
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				remove(bg);
-				quieto = true;
+				new FlxTimer().start(0.00001, function(tmr:FlxTimer){ quieto = true; });
+				
 				MainMenuState.instance.lerpCamZoom = true;
 			});
 		FlxTween.tween(FlxG.sound.music, {volume: 1}, 1, {ease: FlxEase.circIn});
