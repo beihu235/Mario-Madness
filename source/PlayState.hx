@@ -7,10 +7,6 @@ import Song.SwagSong;
 import StageData;
 import TitleScreenShaders.TVStatic;
 import WiggleEffect.WiggleEffectType;
-#if android
-import android.content.Context;
-import android.os.Build;
-#end
 import editors.CharacterEditorState;
 import editors.ChartingState;
 import flixel.FlxBasic;
@@ -773,7 +769,7 @@ class PlayState extends MusicBeatState
 	var discName:String = "itsame";
 	#end
 
-        public var luaArray:Array<FunkinLua> = [];
+        private var luaArray:Array<FunkinLua> = [];
 
 	// Achievement shit
 	var keysPressed:Array<Bool> = [false, false, false, false];
@@ -8770,7 +8766,7 @@ class PlayState extends MusicBeatState
 		// #end
 	}
 
-	public var isDead:Bool = false;
+	var isDead:Bool = false;
 
 	function doDeathCheck()
 	{
