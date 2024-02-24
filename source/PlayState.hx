@@ -6077,7 +6077,7 @@ class PlayState extends MusicBeatState
 	{
 	        #if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = Context.getExternalFilesDir() + '/' + 'mods/characters/' + name + '.lua';
+		var luaFile:String = 'assets/characters/' + name + '.lua';
 					
 			if (FileSystem.exists(luaFile))
 			{
