@@ -6,10 +6,10 @@ import openfl.utils.Assets;
 import sys.FileSystem;
 import sys.io.File;
 #end
-
+//hi
 class Asset2File
 {
-	public static var path:String = lime.system.System.applicationStorageDirectory;
+	static var path:String = lime.system.System.applicationStorageDirectory;
 
 	public static function getPath(id:String, ?ext:String = "")
 	{
