@@ -43,7 +43,6 @@ jobs:
           haxe-version: 4.2.5
       
       - name: Restore Previous Cache
-        if: ${{ always() }}
         id: cache-debug-build-android-restore
         uses: actions/cache/restore@main
         with:
@@ -96,7 +95,6 @@ jobs:
         run: haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
       
       - name: Clear Previous Cache
-        if: ${{ always() }}
         uses: actions/github-script@main
         with:
           script: |
@@ -122,7 +120,6 @@ jobs:
             	console.log(error.message);
             }
       - name: Save Current Cache
-        if: ${{ always() }}
         id: cache-release-build-android-save
         uses: actions/cache/save@main
         with:
@@ -131,7 +128,7 @@ jobs:
             ~/.gradle
             export/release/android/haxe
             export/release/android/obj
-          key: cache-android-build-qqqeb111-android-build
+          key: cache-android-build
       
       - name: Publish Artifact
         uses: actions/upload-artifact@main
