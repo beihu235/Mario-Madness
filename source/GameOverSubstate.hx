@@ -20,7 +20,7 @@ import lime.utils.Assets;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
-	public var bf:Boyfriend;
+	var bf:Boyfriend;
 	var camFollow:FlxPoint;
 	var camFollowPos:FlxObject;
 	var updateCamera:Bool = false;
@@ -63,7 +63,6 @@ class GameOverSubstate extends MusicBeatSubstate
 	public static var songFadeOut:Bool = false;
 	public static var hasVA:Bool = false;
 	public static var vaCount:Int = 1;
-	public static var instance:GameOverSubstate;
 
 	public static function resetVariables()
 	{
@@ -77,25 +76,17 @@ class GameOverSubstate extends MusicBeatSubstate
 		hasVA = false;
 	}
 
-	override function create()
-	{
-		instance = this;
-		PlayState.instance.callOnLuas('onGameOverStart', []);
-
-		super.create();
-	}
-	
 	public function new(x:Float, y:Float, camX:Float, camY:Float, state:PlayState)
 	{
-		PlayState.instance.setOnLuas('inGameOver', true);
+		lePlayState = state;
+		state.setOnLuas('inGameOver', true);
 		super();
 
 		Conductor.songPosition = 0;
 		Conductor.changeBPM(50);
 		
 		var choose:Int = FlxG.random.int(1, vaCount);		
-		var path = Paths.getPreloadPath('sounds/' + PlayState.curStage + '/line' + choose + '.ogg');
-		if (Assets.exists(path))
+		if (Assets.exists(Paths.getPreloadPath(PlayState.curStage + '/line' + choose + '.ogg')))
 		voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + choose));
 
 		bf = new Boyfriend(x, y, characterName);
@@ -596,7 +587,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			lePlayState.staticShader.update(elapsed);
 		}
 
-		PlayState.instance.callOnLuas('onUpdate', [elapsed]);
+		lePlayState.callOnLuas('onUpdate', [elapsed]);
 		if (updateCamera)
 		{
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 0.6, 0, 1);
@@ -659,7 +650,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			}
 
 			// FlxG.sound.playMusic(Paths.music('freakyMenu'));
-			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
+			lePlayState.callOnLuas('onGameOverConfirm', [false]);
 		}
 
 		if (!pngGameOver){
@@ -712,7 +703,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			Conductor.songPosition = FlxG.sound.music.time;
 		}
-		PlayState.instance.callOnLuas('onUpdatePost', [elapsed]);
+		lePlayState.callOnLuas('onUpdatePost', [elapsed]);
 	}
 
 	function acceptConfirm()
@@ -1027,7 +1018,7 @@ class GameOverSubstate extends MusicBeatSubstate
 						}
 					});
 				}));
-			        PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
+				lePlayState.callOnLuas('onGameOverConfirm', [true]);
 			}
 		}
 	}
