@@ -163,7 +163,7 @@ class CreditsState extends MusicBeatState
 			//if(i % 2 != 0)
 				//creditX += 250;
 
-			var infoArray:Array<String> = CoolUtil.coolTextFile(SUtil.getPath() + Paths.txt("creditsTexts/dev" + Std.string(i + 1)));
+			var infoArray:Array<String> = CoolUtil.coolTextFile(Paths.txt("creditsTexts/dev" + Std.string(i + 1)));
 
 			var icon:FlxSprite = new FlxSprite(creditX - 480, creditY - 160).loadGraphic(Paths.image('credits/Char' + Std.string(i + 1)));
 			icon.color = FlxColor.RED;
@@ -199,7 +199,7 @@ class CreditsState extends MusicBeatState
 			specialThanksY = creditY + 365;
 		}
 
-		var infoArray:Array<String> = CoolUtil.coolTextFile(SUtil.getPath() + Paths.txt("creditsTexts/specialThanks"));
+		var infoArray:Array<String> = CoolUtil.coolTextFile(Paths.txt("creditsTexts/specialThanks"));
 
 		var specialThanksBox = new FlxSprite(0, specialThanksY).makeGraphic(700, infoArray.length * 35, FlxColor.BLACK);
 		specialThanksBox.alpha = 0.5;
@@ -230,7 +230,7 @@ class CreditsState extends MusicBeatState
 		theend.visible = false;
 		add(theend);
 
-		var lyricsArray:Array<String> = CoolUtil.coolTextFile(SUtil.getPath() + Paths.txt("creditsTexts/mad_mad_world_lyrics"));
+		var lyricsArray:Array<String> = CoolUtil.coolTextFile(Paths.txt("creditsTexts/mad_mad_world_lyrics"));
 
 		var lyricsBox:FlxSprite = new FlxSprite(0, 580).makeGraphic(100, 48, FlxColor.BLACK);
 		lyricsBox.alpha = 0.8;
@@ -324,9 +324,9 @@ class CreditsState extends MusicBeatState
 				MusicBeatState.switchState(new MainMenuState());
 			}
 
-			if (controls.UI_DOWN_P)
+			if (controls.UI_DOWN)
 				newPos += 40;
-			if (controls.UI_UP_P)
+			if (controls.UI_UP)
 				newPos -= 40;
 
 			if(newPos < 200)
