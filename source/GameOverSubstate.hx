@@ -16,9 +16,11 @@ import flixel.util.FlxColor;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
+import lime.utils.Assets;
+
 class GameOverSubstate extends MusicBeatSubstate
 {
-	var bf:Boyfriend;
+	public var bf:Boyfriend;
 	var camFollow:FlxPoint;
 	var camFollowPos:FlxObject;
 	var updateCamera:Bool = false;
@@ -49,7 +51,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	var lePlayState:PlayState;
 
 	var timers:Array<FlxTimer> = [];
-	var voiceline:FlxSound;
+	var voiceline:FlxSound = null;
 
 	public static var characterName:String = 'bf';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
@@ -61,6 +63,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	public static var songFadeOut:Bool = false;
 	public static var hasVA:Bool = false;
 	public static var vaCount:Int = 1;
+	public static var instance:GameOverSubstate;
 
 	public static function resetVariables()
 	{
@@ -74,16 +77,26 @@ class GameOverSubstate extends MusicBeatSubstate
 		hasVA = false;
 	}
 
+	override function create()
+	{
+		instance = this;
+		PlayState.instance.callOnLuas('onGameOverStart', []);
+
+		super.create();
+	}
+	
 	public function new(x:Float, y:Float, camX:Float, camY:Float, state:PlayState)
 	{
-		lePlayState = state;
-		state.setOnLuas('inGameOver', true);
+		PlayState.instance.setOnLuas('inGameOver', true);
 		super();
 
 		Conductor.songPosition = 0;
 		Conductor.changeBPM(50);
-
-		voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + FlxG.random.int(1, vaCount)));
+		
+		var choose:Int = FlxG.random.int(1, vaCount);		
+		var path = Paths.getPreloadPath('sounds/' + PlayState.curStage + '/line' + choose + '.ogg');
+		if (Assets.exists(path))
+		voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + choose));
 
 		bf = new Boyfriend(x, y, characterName);
 		add(bf);
@@ -583,7 +596,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			lePlayState.staticShader.update(elapsed);
 		}
 
-		lePlayState.callOnLuas('onUpdate', [elapsed]);
+		PlayState.instance.callOnLuas('onUpdate', [elapsed]);
 		if (updateCamera)
 		{
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 0.6, 0, 1);
@@ -627,6 +640,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.deathCounter = 0;
 			PlayState.seenCutscene = false;
 
+			if (PlayState.curStage == 'turmoilsweep' || PlayState.curStage == 'castlestar' || PlayState.curStage == 'exeport' || PlayState.curStage == 'piracy')
+			{
+			PlayState.qqqeb = false;
+			}
+			
 			if (PlayState.isStoryMode)
 			{
 				MusicBeatState.switchState(new StoryMenuState());
@@ -641,7 +659,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			}
 
 			// FlxG.sound.playMusic(Paths.music('freakyMenu'));
-			lePlayState.callOnLuas('onGameOverConfirm', [false]);
+			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
 		}
 
 		if (!pngGameOver){
@@ -694,7 +712,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			Conductor.songPosition = FlxG.sound.music.time;
 		}
-		lePlayState.callOnLuas('onUpdatePost', [elapsed]);
+		PlayState.instance.callOnLuas('onUpdatePost', [elapsed]);
 	}
 
 	function acceptConfirm()
@@ -854,6 +872,8 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	function playVoiceline(time:Float = 2.5):Void
 	{
+	    if (voiceline == null) return;
+	    
 		if (hasVA)
 			{
 				trace('hasVA is ' + hasVA + ', playing voiceline');
@@ -990,7 +1010,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				else
 					FlxTween.tween(FlxG.sound.music, {volume: 0}, 2.5);
 				if(hasVA)
-					voiceline.stop();
+					if (voiceline != null) voiceline.stop();
 				FlxG.sound.play(Paths.music(endSoundName));
 				if(PlayState.curStage == 'landstage')
 					FlxG.sound.play(Paths.music('GBchuckle'));
@@ -1007,7 +1027,7 @@ class GameOverSubstate extends MusicBeatSubstate
 						}
 					});
 				}));
-				lePlayState.callOnLuas('onGameOverConfirm', [true]);
+			        PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
 			}
 		}
 	}

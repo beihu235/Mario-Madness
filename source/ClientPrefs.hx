@@ -24,7 +24,7 @@ class ClientPrefs {
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
-	public static var gpuTextures:Bool = true;
+	public static var gpuTextures:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
 	public static var vramSprites:Bool = true;
@@ -48,10 +48,12 @@ class ClientPrefs {
 	public static var overworld:Bool = false;
 	public static var deathIHY:Bool = false;
 											//Story Mode[0] | World 1[1] | World 2[2] | World 3[3] | World 4[4] | World 5[5] | Overworld Done[6] | Ultra M Done[7] | Unbeatable Done[8] |Legacy Mode[9] 
-        public static var storySave:Array<Bool> = [false, false, false, false, false, false, false, false, false, false];
+        public static var storySave:Array<Bool> = [true, true, true, true, true, true, true, true, true, true];
 
-	public static var worlds:Array<Int> = [0, 0, 0, 0, 0];
-	public static var worldsALT:Array<Int> = [0, 0, 0, 0, 0];
+	public static var worlds:Array<Int> = [3, 7, 5, 6, 3];
+	public static var worldsALT:Array<Int> = [3, 7, 5, 6, 3]; 
+
+	
 	
 	public static var defaultKeys:Array<FlxKey> = [
 		        A,   LEFT, // Note Left

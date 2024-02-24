@@ -1,5 +1,9 @@
 package;
 
+#if android
+import android.content.Context;
+import android.os.Build;
+#end
 import flixel.graphics.FlxGraphic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -12,7 +16,6 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.system.System;
-import cpp.vm.Gc;
 
 #if CRASH_HANDLER
 import lime.app.Application;
@@ -35,10 +38,39 @@ class Main extends Sprite {
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
+	public static var path:String = lime.system.System.applicationStorageDirectory;
 	public static var fpsVar:FPS;
 
 	public static var skipNextDump:Bool = false;
 	public static var forceNoVramSprites:Bool = #if android false #else true #end;
+	
+	static final videos:Array<String> = [
+		"abandoncut",
+		"continue",
+		"cutscene2",
+		"cutscene3",
+		"demise_cutscene",
+		"demise_cutscene_SOUND",
+		"dsintro",
+		"ihy_cutscene",
+		"abandoncut",
+		"continue",
+		"cutscene2",
+		"cutscene3",
+		"demise_cutscene",
+		"demise_cutscene_SOUND",
+		"dsintro",
+		"ihy_cutscene"	
+	];
+	
+	static final otherVideos:Array<String> = [
+		"garlic",
+		"nate",
+		"i hate this",
+		"V3",
+		"scrubb"
+		
+	];
 
 	public static function main():Void {
 		Lib.current.addChild(new Main());
@@ -47,7 +79,8 @@ class Main extends Sprite {
 	public function new() {
 		super();
 
-		SUtil.gameCrashCheck();
+		
+		
 		if (stage != null) {
 			init();
 		}
@@ -66,9 +99,11 @@ class Main extends Sprite {
 
 	public function setupGame():Void {
                 Lib.application.window.onClose.add(PlayState.onWinClose);
-		
-		SUtil.doTheCheck();
-		
+						
+		#if mobile
+		Storage.copyNecessaryFiles();
+		#end
+			
 		#if !debug
 		initialState = TitleState;
 		#end
@@ -86,11 +121,9 @@ class Main extends Sprite {
 				Paths.clearStoredMemory(true);
 				FlxG.bitmap.dumpCache();
 			}
-			clearMajor();
 		});
 		FlxG.signals.postStateSwitch.add(function () {
 			Paths.clearUnusedMemory();
-			clearMajor();
 			Main.skipNextDump = false;
 		});
 
@@ -132,10 +165,6 @@ class Main extends Sprite {
 				sprite.__cacheBitmapColorTransform = null;
 			}
 		}
-	}
-	public static function clearMajor() {
-		Gc.run(true);
-		Gc.compact();
 	}
 	#if CRASH_HANDLER
 	function onCrash(e:UncaughtErrorEvent):Void
