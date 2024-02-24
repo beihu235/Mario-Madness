@@ -40,10 +40,10 @@
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
-	<define name="MODS_ALLOWED" if="desktop || android" />
+	<define name="MODS_ALLOWED" if="desktop" />
 	<define name="LUA_ALLOWED" if="windows || android" />
 	<define name="VIDEOS_ALLOWED" if="web || windows || android" unless="32"/>
-	<define name="CRASH_HANDLER" if="desktop release || android" />
+	<define name="CRASH_HANDLER" if="desktop release" />
 	
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
