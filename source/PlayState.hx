@@ -6076,6 +6076,8 @@ class PlayState extends MusicBeatState
 	function startCharacterLua(name:String)
 	{
 	        #if LUA_ALLOWED
+		var doPush:Bool = false;
+		var luaFile:String = 'characters/' + name + '.lua';
 		luaFile = Paths.getPreloadPath(luaFile);
 		if (Assets.exists(luaFile))
 		{
