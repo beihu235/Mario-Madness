@@ -7,6 +7,10 @@ import Song.SwagSong;
 import StageData;
 import TitleScreenShaders.TVStatic;
 import WiggleEffect.WiggleEffectType;
+#if android
+import android.content.Context;
+import android.os.Build;
+#end
 import editors.CharacterEditorState;
 import editors.ChartingState;
 import flixel.FlxBasic;
@@ -50,8 +54,10 @@ import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import haxe.Json;
 import haxe.Timer;
-import VideoHandler;
-import VideoSprite;
+#if VIDEOS_ALLOWED
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
+#end
 import lime.app.Application;
 import lime.utils.Assets;
 import modchart.*;
@@ -767,7 +773,7 @@ class PlayState extends MusicBeatState
 	var discName:String = "itsame";
 	#end
 
-	private var luaArray:Array<FunkinLua> = [];
+        public var luaArray:Array<FunkinLua> = [];
 
 	// Achievement shit
 	var keysPressed:Array<Bool> = [false, false, false, false];
@@ -779,7 +785,8 @@ class PlayState extends MusicBeatState
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 
 	public var introSoundsSuffix:String = '';
-
+    
+    public var vcr:VCRMario85;
 	public var staticShader:TVStatic;
 
 	public var lavaEmitter:FlxTypedEmitter<LavaParticle>;
@@ -793,7 +800,9 @@ class PlayState extends MusicBeatState
 	var oldTV:Bool;
 	public var oldFX:OldTVShader;
 	public var contrastFX:BrightnessContrastShader;
-        var angel:AngelShader;
+	var beatend:YCBUEndingShader;
+	var angel:AngelShader;
+
 	var dupe:CamDupeShader;
 	var dupeTimer:Int = 0;
 	var dupeMax:Int = 4;
@@ -4130,7 +4139,6 @@ class PlayState extends MusicBeatState
 				noCount = true;
 				BF_CAM_EXTEND = 0;
 				CoolUtil.precacheSound('lightOn');
-				qqqeb1 = true;
                                 gfGroup.visible = false;
 				boyfriendGroup.scrollFactor.set(0.1, 0.1);
 
@@ -4441,26 +4449,20 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		#if (MODS_ALLOWED && LUA_ALLOWED)
+		/*#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
-		if (FileSystem.exists(Paths.modFolders(luaFile)))
-		{
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
-		}
-		else
-		{
-			luaFile = SUtil.getPath() + Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
+			
+                        luaFile = Paths.getPreloadPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
 			}
-		}
 
 		if (doPush)
-			luaArray.push(new FunkinLua(luaFile));
-		#end
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+		#end */
+
 
 		var gfVersion:String = SONG.player3;
 		if (gfVersion == null || gfVersion.length < 1)
@@ -4928,34 +4930,18 @@ class PlayState extends MusicBeatState
 
 		generateSong(SONG.song);
 		modManager = new ModManager(this);
-
-		#if LUA_ALLOWED
-		for (notetype in noteTypeMap.keys())
-		{
-			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
-			if (FileSystem.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-		}
-		for (event in eventPushedMap.keys())
-		{
-			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
-			if (FileSystem.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-		}
-		#end
+		
 		noteTypeMap.clear();
 		noteTypeMap = null;
 		eventPushedMap.clear();
 		eventPushedMap = null;
 
-		// After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
+                // After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
 		// add(strumLine);
 
-		camFollow = new FlxPoint();
+		
+
+                camFollow = new FlxPoint();
 		camFollowPos = new FlxObject(0, 0, 1, 1);
 
 		snapCamFollowToPos(camPos.x, camPos.y);
@@ -5633,25 +5619,32 @@ class PlayState extends MusicBeatState
 				camEst.setFilters([new ShaderFilter(border)]);
 				camHUD.setFilters([new ShaderFilter(border)]);
 				
+				vcr = new VCRMario85();
+				
+				camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
+				camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
+				camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
+				
 				if(curStage == 'nesbeat'){
-				        angel = new AngelShader();
-					camGame.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
-					camEst.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
+				    beatend = new YCBUEndingShader();
+					angel = new AngelShader();
+					camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(beatend), new ShaderFilter(angel)]);
+					camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
 
-				if (oldTV)
+			        if (oldTV)
 				{
 					if (ClientPrefs.filtro85)
 					{
 						oldFX = new OldTVShader();
 
-						camGame.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camEst.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camHUD.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
 
 						contrastFX = new BrightnessContrastShader();
 
-						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
 					}
 				}
 			}
@@ -5728,27 +5721,16 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 		updateTime = true;
 
-		#if (MODS_ALLOWED && LUA_ALLOWED)
+                #if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
-		if (FileSystem.exists(Paths.modFolders(luaFile)))
-		{
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
+		if (OpenFlAssets.exists('assets/data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua')) {
+		  doPush = true;
 		}
-		else
-		{
-			luaFile = SUtil.getPath() + Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
-			{
-				doPush = true;
-			}
-		}
-
-		if (doPush)
-			luaArray.push(new FunkinLua(luaFile));
-		#end
-
+		
+		if(doPush)
+		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua')));
+                #end
+        
 		var daSong:String = Paths.formatToSongPath(curSong);
 		trace(isStoryMode);
 		trace(seenCutscene);
@@ -6097,22 +6079,15 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-		#if LUA_ALLOWED
+	        #if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'characters/' + name + '.lua';
-		if (FileSystem.exists(Paths.modFolders(luaFile)))
-		{
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
-		}
-		else
-		{
-			luaFile = Paths.getPreloadPath(luaFile);
+		var luaFile:String = Context.getExternalFilesDir() + '/' + 'mods/characters/' + name + '.lua';
+					
 			if (FileSystem.exists(luaFile))
 			{
 				doPush = true;
 			}
-		}
+		
 
 		if (doPush)
 		{
@@ -6669,7 +6644,7 @@ class PlayState extends MusicBeatState
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
 		var file:String = Paths.json('songData/' + songName + '/events');
-		#if sys
+		#if MODS_ALLOWED
 		if (FileSystem.exists(Paths.modsJson('songData/' + songName + '/events')) || FileSystem.exists(file))
 		{
 		#else
@@ -7205,6 +7180,11 @@ class PlayState extends MusicBeatState
 			});
 		}
 
+		if (tvEffect && ClientPrefs.filtro85)
+		{
+			vcr.update(elapsed);
+		}
+		
 		if (oldTV && ClientPrefs.filtro85)
 		{
 			oldFX.update(elapsed);
@@ -7241,6 +7221,12 @@ class PlayState extends MusicBeatState
 					}
 					}
 				}
+				}
+			        if(ClientPrefs.filtro85 && endingnes)
+				{
+					val += elapsed;
+					val /= 4;
+					beatend.update(val, elapsed);
 				}
 			}
 		
@@ -8784,7 +8770,7 @@ class PlayState extends MusicBeatState
 		// #end
 	}
 
-	var isDead:Bool = false;
+	public var isDead:Bool = false;
 
 	function doDeathCheck()
 	{
@@ -14411,7 +14397,12 @@ class PlayState extends MusicBeatState
 				if (ClientPrefs.showFPS)
 					Main.fpsVar.visible = true;
 			}
-
+            
+            if (curStage == 'turmoilsweep' || curStage == 'castlestar' || curStage == 'exeport')
+			{
+			qqqeb = false;
+			}
+			
 			if (isStoryMode)
 			{
 				campaignScore += songScore;
