@@ -43,34 +43,6 @@ class Main extends Sprite {
 
 	public static var skipNextDump:Bool = false;
 	public static var forceNoVramSprites:Bool = #if android false #else true #end;
-	
-	static final videos:Array<String> = [
-		"abandoncut",
-		"continue",
-		"cutscene2",
-		"cutscene3",
-		"demise_cutscene",
-		"demise_cutscene_SOUND",
-		"dsintro",
-		"ihy_cutscene",
-		"abandoncut",
-		"continue",
-		"cutscene2",
-		"cutscene3",
-		"demise_cutscene",
-		"demise_cutscene_SOUND",
-		"dsintro",
-		"ihy_cutscene"	
-	];
-	
-	static final otherVideos:Array<String> = [
-		"garlic",
-		"nate",
-		"i hate this",
-		"V3",
-		"scrubb"
-		
-	];
 
 	public static function main():Void {
 		Lib.current.addChild(new Main());
@@ -100,6 +72,15 @@ class Main extends Sprite {
 	public function setupGame():Void {
                 Lib.application.window.onClose.add(PlayState.onWinClose);
 						
+		#if android
+		if (VERSION.SDK_INT > 30)
+			Sys.setCwd(Path.addTrailingSlash(Context.getObbDir()));
+		else
+			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
+		#elseif ios
+		Sys.setCwd(System.documentsDirectory);
+		#end
+		
 		#if mobile
 		Storage.copyNecessaryFiles();
 		#end
