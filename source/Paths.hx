@@ -202,7 +202,7 @@ class Paths
 	
 	static public function video(key:String)
 	{
-		return Context.getExternalFilesDir() +  '/' + 'assets/videos/$key.$VIDEO_EXT';
+		return 'assets/videos/$key.$VIDEO_EXT';
 	}
 	
 	static public function truevideo(key:String)
