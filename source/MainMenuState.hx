@@ -139,7 +139,7 @@ class MainMenuState extends MusicBeatState {
 		DiscordClient.changePresence("In the Menus", null);
 		Lib.application.window.title = "Friday Night Funkin': Mario's Madness";
 		#end
-
+			
 		if (Main.fpsVar != null) {
 			Main.fpsVar.visible = ClientPrefs.showFPS;
 		}
@@ -516,13 +516,13 @@ class MainMenuState extends MusicBeatState {
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('garlic'));				
+						//openSubState(new VideoSubState('garlic'));				
 					case 'v3':
 						typin = '';
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('V3'));			
+						//openSubState(new VideoSubState('V3'));			
 					case 'peepy':
 						CoolUtil.browserLoad('https://itemlabel.com/products/peepy');
 					case 'natetdom':
@@ -530,19 +530,19 @@ class MainMenuState extends MusicBeatState {
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('nate'));
+						//openSubState(new VideoSubState('nate'));
 					case 'unbeatable':
 						typin = '';
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('i hate this'));			
+						//openSubState(new VideoSubState('i hate this'));			
 					case 'scrubb':
 						typin = '';
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('scrubb'));
+						//openSubState(new VideoSubState('scrubb'));
 				}
 			}
 
@@ -1039,81 +1039,13 @@ class MainMenuState extends MusicBeatState {
 
 				new FlxTimer().start(2, function(tmr:FlxTimer) {
 					FlxG.camera.alpha = 0;
-					new FlxTimer().start(1, function (tmr:FlxTimer) {
-							#if VIDEOS_ALLOWED
-							var foundFile:Bool = false;
-							var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + "penkaru" + '.' + Paths.VIDEO_EXT); #else ''; #end
-							#if sys
-							if (FileSystem.exists(fileName))
-							{
-								foundFile = true;
-							}
-							#end
-
-							if (!foundFile) {
-								fileName = Paths.video("penkaru");
-								if (#if sys FileSystem.exists(fileName) #else OpenFlAssets.exists(fileName) #end)
-									foundFile = true;
-
-								if (foundFile) {
-									Lib.application.window.title = "*  You look inside the drawer and find a old vhs of a dance you used to do in highschool. *  Did this ever exist? When did you take this video?";
-									Lib.application.window.resizable = false;
-									FlxG.resizeWindow(1280, 720);
-
-									FlxG.sound.volume = 1;
-									FlxG.sound.soundTray.visual = false;
-									FlxG.sound.soundTray.show(true);
-
-									// Am I Evil??? (i do not care about streamer mode)
-									#if windows
-									CppAPI.removeWindowIcon();
-									#end
-									FlxG.fullscreen = FlxG.autoPause = false;
-									Lib.application.window.onClose.add(function () {
-										Lib.application.window.onClose.cancel();
-									});
-									
-									(new FlxVideo(fileName)).finishCallback = function() {Sys.exit(0);}
-									(new FlxTimer()).start(52, function (tmr:FlxTimer) {
-										#if windows
-										CppAPI._setWindowLayered();
-										#end
-					 
-										var numTween:NumTween = FlxTween.num(1, 0, 3, {
-											onComplete: function(twn:FlxTween) {
-												Sys.exit(0);
-										}});
-					
-										numTween.onUpdate = function(twn:FlxTween)
-										{
-											#if windows
-											CppAPI.setWindowOppacity(numTween.value);
-											#end
-										}
-									});
-								}
-								else
-									FlxG.log.warn('Couldnt find video file: ' + fileName);
-								#end
-						}
-					});
+				
 				});
 			});
 		}
 
 		penkStage++;
 	}
-}
+    }
 
-class VideoSubState extends MusicBeatSubstate
-{
-	public function new(file:String){
-		(new FlxVideo(Paths.video('secrets/$file'))).finishCallback = function(){
-			FlxG.sound.music.resume();
-			MainMenuState.canselectshit = true;
 
-			close();
-		}
-		super();
-	}
-}
