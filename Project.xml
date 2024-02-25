@@ -140,8 +140,6 @@
 	<haxedef name="no-deprecation-warnings"/>
 	
 	<!-- _________________________________ Custom _______________________________ -->
-	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
-	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 	
 	<icon path="art/icon16.png" size='16'/>
