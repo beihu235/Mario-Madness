@@ -5737,15 +5737,15 @@ class PlayState extends MusicBeatState
 
                 #if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
+		var luaFile:String = 'data/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
 			luaFile = Paths.getPreloadPath(luaFile);
-			if (Assets.exists(luaFile))
+			if (FileSystem.exists(luaFile))
 			{
 				doPush = true;
 			}
 
 		if (doPush)
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+			luaArray.push(new FunkinLua(luaFile));
 		#end
         
 		var daSong:String = Paths.formatToSongPath(curSong);
@@ -6659,9 +6659,9 @@ class PlayState extends MusicBeatState
 		var daBeats:Int = 0; // Not exactly representative of 'daBeats' lol, just how much it has looped
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
-		var file:String = Paths.json('songData/' + songName + '/events');
+		var file:String = Paths.json(songName + '/events');
 		#if MODS_ALLOWED
-		if (FileSystem.exists(Paths.modsJson('songData/' + songName + '/events')) || FileSystem.exists(file))
+		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file))
 		{
 		#else
 		if (OpenFlAssets.exists(file))
