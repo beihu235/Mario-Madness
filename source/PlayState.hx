@@ -6659,9 +6659,9 @@ class PlayState extends MusicBeatState
 		var daBeats:Int = 0; // Not exactly representative of 'daBeats' lol, just how much it has looped
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
-		var file:String = Paths.json(songName + '/events');
+		var file:String = Paths.json('songData/' + songName + '/events');
 		#if MODS_ALLOWED
-		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file))
+		if (FileSystem.exists(Paths.modsJson('songData/' + songName + '/events')) || FileSystem.exists(file))
 		{
 		#else
 		if (OpenFlAssets.exists(file))
