@@ -2,7 +2,6 @@
 	"song": {
 		"player1": "bfnew",
 		"player2": "fakemario",
-		"events": [],
 		"notes": [
 			{
 				"lengthInSteps": 16,
@@ -9239,13 +9238,13 @@
 				"mustHitSection": true
 			}
 		],
-		"gfVersion": "gf",
-		"player3": "gfweird",
+		"gfVersion": "gfweird",
+		"player3": null,
 		"splashSkin": "noteSplashes",
 		"song": "Powerdown",
 		"stage": "exeport",
 		"validScore": true,
-		"arrowSkin": "",
+		"arrowSkin": "Mario_NOTE_assets",
 		"needsVoices": true,
 		"speed": 3.1,
 		"bpm": 174
