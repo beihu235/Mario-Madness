@@ -51,8 +51,8 @@ import flixel.util.FlxTimer;
 import haxe.Json;
 import haxe.Timer;
 #if VIDEOS_ALLOWED
-import hxcodec.VideoHandler;
-import hxcodec.VideoSprite;
+import VideoHandler;
+import VideoSprite;
 #end
 import lime.app.Application;
 import lime.utils.Assets;
