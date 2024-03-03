@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Mario's Madness" file="Mario" packageName="com.mariomadnessv2.psychengine" package="com.mariomadnessv2.psychengine" main="Main" version="2.0.1" company="qqqeb" />
+	<app title="Friday Night Funkin': Mario's Madness" file="Mario" packageName="com.mariomadnessV2.psychengine" package="com.mariomadnessV2.psychengine" main="Main" version="2.0.1" company="qqqeb" />
 	
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
