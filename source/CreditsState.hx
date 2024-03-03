@@ -332,8 +332,8 @@ class CreditsState extends MusicBeatState
 			if(newPos < 200)
 				newPos = 200;
 
-			if(13320 < newPos)
-				newPos = 13320;
+			if(13520 < newPos)
+				newPos = 13520;
 
 			if(camFollowPos.y != newPos){
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 5, 0, 1);
