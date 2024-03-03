@@ -12,7 +12,7 @@ import openfl.display._internal.stats.DrawCallContext;
 #if flash
 import openfl.Lib;
 #end
-
+import cpp.vm.Gc;
 #if openfl
 import openfl.system.System;
 #end
@@ -86,7 +86,7 @@ class FPS extends TextField
 			var memoryMegas:Float = 0;
 			
 			#if openfl
-			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
+			memoryMegas = Math.abs(FlxMath.roundDecimal(Gc.memInfo64(0) / 1000000, 1));
 			text += "\nMemory: " + memoryMegas + " MB";
 			#end
 
