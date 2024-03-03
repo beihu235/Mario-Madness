@@ -861,7 +861,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 {
 	private static var curSelected:Int = 0;
 	static var unselectableOptions:Array<String> = ['GRAPHICS', 'GAMEPLAY'];
-	static var noCheckbox:Array<String> = ['Framerate', 'Hitbox Alpha', 'Note Delay'];
+	static var noCheckbox:Array<String> = ['Framerate', 'Note Delay'];
 
 	static var options:Array<String> = [
 		'GRAPHICS',
@@ -1131,13 +1131,6 @@ class PreferencesSubstate extends MusicBeatSubstate
 								FlxG.updateFramerate = ClientPrefs.framerate;
 							}
 
-						case 'Hitbox Alpha':
-							ClientPrefs.hitboxalpha += add2;
-							if (ClientPrefs.hitboxalpha < 0)
-								ClientPrefs.hitboxalpha = 0.0;
-							else if (ClientPrefs.hitboxalpha > 1)
-								ClientPrefs.hitboxalpha = 1;
-						
 						case 'Note Delay':
 							var mult:Int = 1;
 							if (holdTime > 1.5)
@@ -1191,8 +1184,6 @@ class PreferencesSubstate extends MusicBeatSubstate
 		{
 			case 'Framerate':
 				daText = "Changes opacity -omgPretty self explanatory, isn't it?\nDefault value is 60.";
-			case 'Hitbox Alpha':
-				daText = "Changes opacity.";
                         case 'Note Delay':
 				daText = "Changes how late a note is spawned.\nUseful for preventing audio lag from wireless earphones.";
 			case 'FPS Counter':
@@ -1323,8 +1314,6 @@ class PreferencesSubstate extends MusicBeatSubstate
 				{
 					case 'Framerate':
 						daText = '' + ClientPrefs.framerate;
-					case 'Hitbox Alpha':
-						daText = '' + ClientPrefs.hitboxalpha;
 					case 'Note Delay':
 						daText = ClientPrefs.noteOffset + 'ms';
 				}
