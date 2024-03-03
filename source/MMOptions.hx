@@ -1518,8 +1518,6 @@ class MarioSubstate extends MusicBeatSubstate
 			{
 				switch (options[curSelected])
 				{
-					case 'GPU Textures':
-						ClientPrefs.gpuTextures = !ClientPrefs.gpuTextures;
 					case 'Enable TV Effect':
 						ClientPrefs.filtro85 = !ClientPrefs.filtro85;
 					case 'Enable Resume Wait':
@@ -1584,8 +1582,6 @@ class MarioSubstate extends MusicBeatSubstate
 		var daText:String = '';
 		switch (options[curSelected])
 		{
-			case 'GPU Textures':
-				daText = "If checked, renders textures on the GPU instead,\ndecreasing memory usage";
 			case 'Enable TV Effect':
 				daText = "Pretty self explanatory, isn't it?";
 			case 'Enable Resume Wait':
@@ -1649,9 +1645,7 @@ class MarioSubstate extends MusicBeatSubstate
 			{
 				var daValue:Bool = false;
 				switch (options[checkboxNumber[i]])
-				{
-					case 'GPU Textures':
-						daValue = ClientPrefs.gpuTextures;
+				{	
 					case 'Enable TV Effect':
 						daValue = ClientPrefs.filtro85;
 					case 'Enable Resume Wait':
