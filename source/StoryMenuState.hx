@@ -19,8 +19,10 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.misc.NumTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import VideoHandler;
-import VideoSprite;
+#if VIDEOS_ALLOWED
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
+#end
 import lime.net.curl.CURLCode;
 import openfl.filters.ShaderFilter;
 import sys.FileSystem;
@@ -52,7 +54,7 @@ class StoryMenuState extends MusicBeatSubstate
 
 	var opUp:FlxObject;
 	var opDown:FlxObject;
-	var vid:VideoSprite;
+	var vid:VideoHandler;
 
 	var staticShader:TVStatic;
 	var dumbTween:FlxTween;
@@ -209,7 +211,7 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(titleText, {alpha: 1}, 4, {ease: FlxEase.expoOut});
 		FlxTween.tween(cutText, {alpha: 1}, 4, {ease: FlxEase.expoOut});
 		FlxTween.tween(overlay, {alpha: .4}, 4, {ease: FlxEase.expoOut});
-
+		
 		#if android
 		addVirtualPad(NONE, A);
 		addPadCamera();
@@ -241,10 +243,6 @@ class StoryMenuState extends MusicBeatSubstate
 		{
 			selectWeek();
 		}
-		else if(controls.ACCEPT #if android || _virtualpad.buttonA.justPressed #end && inCutscene){
-			finishVideo();
-			vid.bitmap.stop();
-		}
 
 		charsShader.update(elapsed);
 		chars.angle = 2 * Math.sin(tottalTimer/2);
@@ -255,11 +253,11 @@ class StoryMenuState extends MusicBeatSubstate
 		overlay.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 		flicker.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 
-		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end && quieto)
+		if (controls.BACK #if android || (FlxG.android.justReleased.BACK && quieto) #end)
 		{
 			PlayState.isStoryMode = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			FlxG.state.closeSubState();
+	                FlxG.state.closeSubState();
 		}
 
 		MainMenuState.instance.WEHOVERING = false;
@@ -375,7 +373,7 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(FlxG.sound.music, {volume: 0}, 2, {ease: FlxEase.circIn});
 		PlayState.storyPlaylist = ['Its a me', 'Starman Slaughter'];
 		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase(), PlayState.storyPlaylist[0].toLowerCase());
-		PauseSubState.tengo = 'its-a-me';
+		PauseSubState.tengo = 'Its a me';
 		PlayState.storyWeek = 0;
 		PlayState.campaignScore = 0;
 		PlayState.campaignMisses = 0;
@@ -399,11 +397,8 @@ class StoryMenuState extends MusicBeatSubstate
 				inCutscene = true;
 				MainMenuState.instance.lerpCamZoom = false;
 				FlxG.camera.zoom = 1;
-				vid = new VideoSprite();
-				vid.scrollFactor.set(0, 0);
+				vid = new VideoHandler();
 				vid.playVideo(Paths.video(name));
-				
-				add(vid);
 
 				FlxG.camera.filtersEnabled = false;
 				vid.finishCallback = function()
@@ -418,11 +413,11 @@ class StoryMenuState extends MusicBeatSubstate
 
 	public function finishVideo():Void{
 		FlxG.camera.filtersEnabled = true;
-		vid.destroy();
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				remove(bg);
-				quieto = true;
+				new FlxTimer().start(0.00001, function(tmr:FlxTimer){ quieto = true; });
+				
 				MainMenuState.instance.lerpCamZoom = true;
 			});
 		FlxTween.tween(FlxG.sound.music, {volume: 1}, 1, {ease: FlxEase.circIn});
