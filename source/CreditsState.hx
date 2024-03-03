@@ -159,7 +159,7 @@ class CreditsState extends MusicBeatState
 		}
 		for(i in 0...43){
 			var creditX = 430;
-			var creditY = 43 * 300 + 60;
+			var creditY = i * 300 + 60;
 			//if(i % 2 != 0)
 				//creditX += 250;
 
@@ -332,8 +332,8 @@ class CreditsState extends MusicBeatState
 			if(newPos < 200)
 				newPos = 200;
 
-			if(12920 < newPos)
-				newPos = 12920;
+			if(13320 < newPos)
+				newPos = 13320;
 
 			if(camFollowPos.y != newPos){
 				var lerpVal:Float = CoolUtil.boundTo(elapsed * 5, 0, 1);
