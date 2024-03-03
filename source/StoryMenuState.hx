@@ -241,7 +241,7 @@ class StoryMenuState extends MusicBeatSubstate
 		{
 			selectWeek();
 		}
-		else if(controls.ACCEPT && inCutscene){
+		else if(controls.ACCEPT #if android || _virtualpad.buttonA.justPressed #end && inCutscene){
 			finishVideo();
 			vid.bitmap.stop();
 		}
