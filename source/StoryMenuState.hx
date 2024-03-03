@@ -373,7 +373,7 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(FlxG.sound.music, {volume: 0}, 2, {ease: FlxEase.circIn});
 		PlayState.storyPlaylist = ['Its a me', 'Starman Slaughter'];
 		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase(), PlayState.storyPlaylist[0].toLowerCase());
-		PauseSubState.tengo = 'Its a me';
+		PauseSubState.tengo = 'its-a-me';
 		PlayState.storyWeek = 0;
 		PlayState.campaignScore = 0;
 		PlayState.campaignMisses = 0;
