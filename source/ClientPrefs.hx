@@ -14,7 +14,6 @@ class ClientPrefs {
 	public static var showFPS:Bool = true;
 	public static var flashing:Bool = true;
 	public static var globalAntialiasing:Bool = true;
-	public static var hitboxalpha:Float = 0.2; //someone request this lol
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var framerate:Int = 60;
@@ -24,7 +23,6 @@ class ClientPrefs {
 	public static var hideHud:Bool = false;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
-	public static var gpuTextures:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
 	public static var vramSprites:Bool = true;
@@ -48,13 +46,11 @@ class ClientPrefs {
 	public static var overworld:Bool = false;
 	public static var deathIHY:Bool = false;
 											//Story Mode[0] | World 1[1] | World 2[2] | World 3[3] | World 4[4] | World 5[5] | Overworld Done[6] | Ultra M Done[7] | Unbeatable Done[8] |Legacy Mode[9] 
-        public static var storySave:Array<Bool> = [true, true, true, true, true, true, true, true, true, true];
+	public static var storySave:Array<Bool> = [false, false, false, false, false, false, false, false, false, false];
 
-	public static var worlds:Array<Int> = [3, 7, 5, 6, 3];
-	public static var worldsALT:Array<Int> = [3, 7, 5, 6, 3]; 
+	public static var worlds:Array<Int> = [0, 0, 0, 0, 0];
+	public static var worldsALT:Array<Int> = [0, 0, 0, 0, 0]; 
 
-	
-	
 	public static var defaultKeys:Array<FlxKey> = [
 		        A,   LEFT, // Note Left
 		        S,   DOWN, // Note Down
@@ -117,14 +113,12 @@ class ClientPrefs {
 		FlxG.save.data.flashing = flashing;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
 		FlxG.save.data.noteSplashes = noteSplashes;
-		FlxG.save.data.hitboxalpha = hitboxalpha;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.framerate = framerate;
 		FlxG.save.data.cursing = cursing;
 		FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
 		FlxG.save.data.noteOffset = noteOffset;
-		FlxG.save.data.gpuTextures = gpuTextures;
 		FlxG.save.data.menuBG = menuBG;
 		FlxG.save.data.menuUnlock = menuUnlock;
 		FlxG.save.data.hideHud = hideHud;
@@ -177,9 +171,6 @@ class ClientPrefs {
 		if (FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;
 		}
-		if(FlxG.save.data.gpuTextures != null) {
-			gpuTextures = FlxG.save.data.gpuTextures;
-		}
 		if (FlxG.save.data.noteSplashes != null) {
 			noteSplashes = FlxG.save.data.noteSplashes;
 		}
@@ -205,9 +196,6 @@ class ClientPrefs {
 		}*/
 		if (FlxG.save.data.camZooms != null) {
 			camZooms = FlxG.save.data.camZooms;
-		}
-		if(FlxG.save.data.hitboxalpha != null) {
-			hitboxalpha = FlxG.save.data.hitboxalpha;
 		}
 		if (FlxG.save.data.hideHud != null) {
 			hideHud = FlxG.save.data.hideHud;
