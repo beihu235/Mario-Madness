@@ -86,8 +86,9 @@ class FlxNewHitbox extends FlxSpriteGroup
 		hint.alpha = 0.00001;
 		hint.onDown.callback = hint.onOver.callback = function()
 		{
-			if (hint.alpha != 0.2)
-				hint.alpha = 0.2;
+			if (hint.alpha != 0.1)
+				hint.alpha = 0.1;
+			//按着会舒服一些
 		}
 		hint.onUp.callback = hint.onOut.callback = function()
 		{
